@@ -74,6 +74,12 @@ pnpm dlx shadcn@latest add button card carousel dropdown-menu input label form
 pnpm add zod
 ```
 
+* now create a folder named services at root directiory.
+* create logout.ts into the services folder.
+* create types.ts file into lib folder.
+* into types.ts, create IUser interface according to backend sendResponse
+
+
 
 
 
