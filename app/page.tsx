@@ -1,3 +1,4 @@
+import Navbar from "@/components/shared/Navbar";
 import { getMe } from "@/services/getMe";
 
 export default async function Home() {
@@ -5,6 +6,7 @@ export default async function Home() {
   console.log({profile})
   return (
     <section>
+      <Navbar user={profile}/>
       <p>Home page</p>
     </section>
   );

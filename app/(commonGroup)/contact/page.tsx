@@ -1,8 +1,14 @@
+import Navbar from '@/components/shared/Navbar'
+import { getMe } from '@/services/getMe'
 import React from 'react'
 
-const Contact = () => {
+const Contact = async() => {
+  const profile = await getMe()
   return (
-    <div>Contact</div>
+    <>
+    <Navbar user={profile}/>
+    <div>Contact Page</div>
+    </>
   )
 }
 
