@@ -81,11 +81,14 @@ pnpm add zod
 * into app folder, create (dashboardGroup) and other dashboard routes.
 * into services folder, create a generateAccessToken.ts file to generate accessToken from refreshToken in case of expired accessToken.
 * into services folder, create a getMe.ts file to get user profile.
+* into app folder, create (dashboardGroup). then create necessary dashboard routes.
 * into components folder, create a shared folder. into shared folder, create Navbar.tsx
+* into app folder, create (authGroup).into it, login and register route folder.
 
 
 
-
+rm -rf .next
+pnpm dev
 
 
 
