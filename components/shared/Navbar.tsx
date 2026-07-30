@@ -39,7 +39,7 @@ export default function Navbar({ user }: { user: IUser | null }) {
   const userMenuItems = [
     { label: "Dashboard", icon: LayoutDashboard, href: dashboardHref, isAction: false },
     { label: "Profile", icon: User, href: "/profile", isAction: false },
-    { label: "Log out", icon: LogOut, href: "/", isAction: true },
+    { label: "Log out", icon: LogOut, href: "/login", isAction: true },
   ];
 
   return (

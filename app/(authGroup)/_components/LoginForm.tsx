@@ -1,9 +1,8 @@
 // (authGroup)/_components/LoginForm.tsx
 "use client";
 
-import { useActionState, startTransition, useEffect } from "react";
+import { useActionState,  useEffect } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { loginAction } from "../_actions/loginActions";
 
 import { Button } from "@/components/ui/button";
@@ -12,31 +11,35 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { LoginActionState } from "@/lib/types";
+import { toast } from "sonner";
 
 const initialState: LoginActionState = {
   success: false,
+  statusCode: 0,
   message: "",
+  data: {
+    accessToken: "",
+    refreshToken: ""
+  }
 };
 
 export default function LoginForm() {
-  const router = useRouter();
   const [state, formAction, isPending] = useActionState(loginAction, initialState);
-
-  // Redirect on successful login
+  console.log({state})
+  console.log({formAction})
+  console.log({isPending})
+  
   useEffect(() => {
-    if (state.success) {
-      router.push("/dashboard"); // Adjust destination path as needed
-      router.refresh();
+    if (!state || state.statusCode === 0) {
+      return;
     }
-  }, [state.success, router]);
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const formData = new FormData(event.currentTarget);
-    startTransition(() => {
-      formAction(formData);
-    });
-  };
+    if (state.success) {
+      toast.success(state.message || "Login successful.");
+    } else {
+      toast.error(state.message || "Login failed");
+    }
+  }, [state]);
 
   return (
     <Card className="w-full max-w-md mx-auto">
@@ -46,7 +49,7 @@ export default function LoginForm() {
         <CardDescription>Enter your credentials to access your account</CardDescription>
       </CardHeader>
       
-      <form onSubmit={handleSubmit}>
+      <form action={formAction}>
         <CardContent className="space-y-4">
           {/* General API errors */}
           {!state.success && state.message && !state.errors && (

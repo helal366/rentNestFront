@@ -46,9 +46,22 @@ export interface IUser {
 
 export type LoginActionState = {
   success: boolean;
+  statusCode: number;
   message: string;
+  data?: {
+    accessToken?: string;
+    refreshToken?:string
+  };
   errors?: {
     email?: string[];
     password?: string[];
   };
 };
+export type LoginResponse = {
+  success: boolean;
+  message: string;
+  data : {
+    accessToken: string;
+    refreshToken:string;
+  }
+}

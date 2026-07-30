@@ -73,6 +73,11 @@ pnpm dlx shadcn@latest add button card carousel dropdown-menu input label form s
 ```
 pnpm add zod
 ```
+* install jsonweb token
+```
+pnpm add jsonwebtoken && pnpm add -D @types/jsonwebtoken
+```
+
 
 * now create a folder named services at root directiory.
 * create logout.ts into the services folder.
