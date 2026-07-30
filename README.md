@@ -67,7 +67,7 @@ export default function RootLayout({
 * change your title and description according to your own.
 * install some shadcn components if necessary
 ```
-pnpm dlx shadcn@latest add button card carousel dropdown-menu input label form
+pnpm dlx shadcn@latest add button card carousel dropdown-menu input label form sheet && pnpm add lucide-react
 ```
 * install zod if you want to use
 ```
@@ -78,6 +78,10 @@ pnpm add zod
 * create logout.ts into the services folder.
 * create types.ts file into lib folder.
 * into types.ts, create IUser interface according to backend sendResponse
+* into app folder, create (dashboardGroup) and other dashboard routes.
+* into services folder, create a generateAccessToken.ts file to generate accessToken from refreshToken in case of expired accessToken.
+* into services folder, create a getMe.ts file to get user profile.
+* into components folder, create a shared folder. into shared folder, create Navbar.tsx
 
 
 
