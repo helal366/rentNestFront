@@ -44,3 +44,11 @@ export interface IUser {
   };
 }
 
+export type LoginActionState = {
+  success: boolean;
+  message: string;
+  errors?: {
+    email?: string[];
+    password?: string[];
+  };
+};
