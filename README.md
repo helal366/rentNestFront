@@ -69,6 +69,10 @@ export default function RootLayout({
 ```
 pnpm dlx shadcn@latest add button card carousel dropdown-menu input label form
 ```
+* install zod if you want to use
+```
+pnpm add zod
+```
 
 
 
