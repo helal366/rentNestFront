@@ -44,14 +44,12 @@ export default function LoginForm() {
   return (
     <Card className="w-full max-w-md mx-auto">
       <CardHeader className="text-center">
-        {/* Welcome note located at top center of form */}
         <CardTitle className="text-2xl font-bold">Welcome Back</CardTitle>
         <CardDescription>Enter your credentials to access your account</CardDescription>
       </CardHeader>
       
       <form action={formAction}>
         <CardContent className="space-y-4">
-          {/* General API errors */}
           {!state.success && state.message && !state.errors && (
             <Alert variant="destructive">
               <AlertDescription>{state.message}</AlertDescription>
@@ -88,7 +86,7 @@ export default function LoginForm() {
         </CardContent>
 
         <CardFooter className="flex flex-col space-y-4">
-          <Button type="submit" className="w-full" disabled={isPending}>
+          <Button type="submit" className="w-full cursor-pointer" disabled={isPending}>
             {isPending ? "Logging in..." : "Login"}
           </Button>
 

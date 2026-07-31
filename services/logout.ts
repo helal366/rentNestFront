@@ -10,5 +10,5 @@ export const logout = async()=>{
     revalidateTag("my_profile", {
         expire:0
     });
-    redirect("/")
+    redirect("/login")
 }

@@ -74,7 +74,7 @@ export async function loginAction(
     } else if (decodedAccessToken?.role === "ADMIN") {
       redirectToPath = "/admin_dashboard";
     } else {
-      redirectToPath = "/"; // Fallback landing target
+      redirectToPath = "/"; 
     }
    
 
@@ -87,7 +87,7 @@ export async function loginAction(
     };
   }
  if (redirectToPath) {
-    redirect(redirectToPath); // [1]
+    redirect(redirectToPath); 
   }
    return {
       success: true,

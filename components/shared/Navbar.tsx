@@ -83,7 +83,7 @@ export default function Navbar({ user }: { user: IUser | null }) {
           {user?.data ? (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon" className="rounded-full border focus-visible:ring-0">
+                <Button variant="ghost" size="icon" className="rounded-full border focus-visible:ring-0 cursor-pointer">
                   <User className="h-5 w-5" />
                   <span className="sr-only">User Menu</span>
                 </Button>
