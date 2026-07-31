@@ -3,7 +3,7 @@ import { cookies } from "next/headers"
 export const generateAccessToken = async()=>{
     const cookieStore = await cookies();
     const refreshToken = cookieStore.get("refreshToken")?.value;
-    console.log({refreshToken})
+    // console.log({refreshToken})
     if(!refreshToken){
         return {
             success: false,
@@ -11,7 +11,7 @@ export const generateAccessToken = async()=>{
             message: "Not logged in..."
         }
     };
-    console.log(`${process.env.BACKEND_VERCEL_URL}`)
+    // console.log(`${process.env.BACKEND_VERCEL_URL}`)
     const data = await fetch(`${process.env.BACKEND_VERCEL_URL}/api/auth/refresh-token`, {
         method: "POST",
         credentials: "include",
@@ -29,8 +29,8 @@ export const generateAccessToken = async()=>{
     }
    
     const result =await data.json();
-    const {accessToken} = result.data;
-    return accessToken
+   
+    return result
 }
 
 

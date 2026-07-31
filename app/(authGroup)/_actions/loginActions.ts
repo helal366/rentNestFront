@@ -19,8 +19,8 @@ export async function loginAction(
   const password = formData.get("password");
 
   const validatedFields = loginSchema.safeParse({ email, password });
-  console.log({validatedFields});
-  console.log("validated fields json data: ", JSON.stringify(validatedFields.data))
+  // console.log({validatedFields});
+  // console.log("validated fields json data: ", JSON.stringify(validatedFields.data))
 
  if (!validatedFields.success) {
   const flattened = z.flattenError(validatedFields.error);
