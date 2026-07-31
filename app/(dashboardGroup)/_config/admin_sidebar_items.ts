@@ -1,5 +1,5 @@
 import { ISidebarItem } from "@/lib/types";
-import { User, Users } from "lucide-react";
+import { User } from "lucide-react";
 
 export const ADMIN_SIDEBAR_ITEMS: ISidebarItem[]= [
     {
@@ -8,18 +8,24 @@ export const ADMIN_SIDEBAR_ITEMS: ISidebarItem[]= [
         icon : User
     },
     {
-        label : "All Users", // landlord, tenant, admin
-        href : "/admin_dashboard",
+        label : "Users", // landlord, tenant, admin
+        href : "/users",
+        icon : User
+    },
+    
+    {
+        label : "Rental Requests", 
+        href : "/rental_requests",
         icon : User
     },
     {
-        label : "All Users", 
-        href : "/admin_dashboard",
+        label : "Categories", 
+        href : "/categories",
         icon : User
     },
     {
-        label : "All Rental Requests", 
-        href : "/admin_dashboard",
+        label : "Payments", 
+        href : "/payments",
         icon : User
     },
 
