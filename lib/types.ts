@@ -65,3 +65,40 @@ export type LoginResponse = {
     refreshToken:string;
   }
 }
+
+// register
+
+export interface IRegisterUserData {
+  id: string;
+  name: string;
+  email: string;
+  role: Role;
+  address: string;
+  contactNo: string;
+  userStatus: UserStatus;
+  createdAt: string; 
+  updatedAt: string; 
+}
+
+export interface RegisterResponse {
+  success: boolean;
+  statusCode: number;
+  message: string;
+  data: IRegisterUserData;
+}
+
+export interface RegisterActionState {
+  success: boolean;
+  statusCode: number;
+  message: string;
+  data?: IRegisterUserData | null;
+  errors?: {
+    name?: string[];
+    email?: string[];
+    password?: string[];
+    confirmPassword?: string[];
+    role?: string[];
+    address?: string[];
+    contactNo?: string[];
+  };
+}
