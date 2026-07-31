@@ -5,18 +5,17 @@ import { jwtTokens } from "./services/jwtTokens";
 import { JwtPayload } from "jsonwebtoken";
 import { generateAccessToken } from "./services/generateAccessToken";
 
-const PRIVATE_ROUTES = [
-  "/tenant_dashboard",
-  "/landlord_dashboard",
-  "/admin_dashboard",
-];
+const PUBLIC_ROUTES=["/login", "/register", "/properties", "/contact"];
 
 export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
-  const isPrivate = PRIVATE_ROUTES.some(
-    (route) => pathname === route || pathname.startsWith(route + "/"),
-  );
 
+  const isPublic = PUBLIC_ROUTES.some((route) => {
+  if (route === "/properties") {
+    return pathname === route || pathname.startsWith(route + "/");
+  }
+  return pathname === route;
+});
   const cookieStore = await cookies();
   let accessToken = cookieStore.get("accessToken")?.value;
   const refreshToken = cookieStore.get("refreshToken")?.value;
@@ -41,7 +40,7 @@ export async function proxy(request: NextRequest) {
 
   const finalResponse = NextResponse.next();
 
-  if (isPrivate) {
+  if (!isPublic) {
     if (
       (!decodedAccessToken || !decodedAccessToken.success) &&
       (!decodedRefreshToken || !decodedRefreshToken.success)
