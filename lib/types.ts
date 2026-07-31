@@ -1,3 +1,6 @@
+import { LucideProps } from "lucide-react";
+import { ForwardRefExoticComponent, RefAttributes } from "react";
+
 export type Role = "ADMIN" | "TENANT" | "LANDLORD";
 export type UserStatus = "BANNED" | " UNBAN";
 
@@ -101,4 +104,10 @@ export interface RegisterActionState {
     address?: string[];
     contactNo?: string[];
   };
+}
+
+export type ISidebarItem = {
+    label: string,
+    href: string,
+    icon: ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>
 }

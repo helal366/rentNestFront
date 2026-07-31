@@ -127,7 +127,6 @@ export async function proxy(request: NextRequest) {
   return NextResponse.next();
 }
 
-// Optimized matcher configuration
 export const config = {
   matcher: [
     "/tenant_dashboard/:path*",
