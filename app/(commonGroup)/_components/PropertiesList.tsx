@@ -2,15 +2,17 @@ import { Button } from "@/components/ui/button";
 import { fetchProperties } from "../properties/page";
 import { GetPropertiesResponse,  ValidatedPropertySearchParams } from "../_types/propertyTypes";
 import Link from "next/link";
+import { RetryButton } from "./RetryButton";
 
 
 const PropertiesList = async ({
   queryString,
-  resolvedParams,
+  searchParams,
 }: {
   queryString: string;
-  resolvedParams: ValidatedPropertySearchParams;
+  searchParams: ValidatedPropertySearchParams;
 }) => {
+  const resolvedParams = { ...searchParams };
   const apiResponse = (await fetchProperties(
     queryString,
   )) as GetPropertiesResponse;
@@ -25,9 +27,7 @@ const PropertiesList = async ({
           We are having trouble communicating with our property database
           servers. This might be due to a temporary network blip.
         </p>
-        <Button variant="default" onClick={() => window.location.reload()}>
-          Try Again
-        </Button>
+        <RetryButton />
       </div>
     );
   }
@@ -92,7 +92,7 @@ const PropertiesList = async ({
                     {property.amenities?.map((amenity) => {
                       const isMatched =
                         resolvedParams.amenities?.includes(amenity);
-                       
+
                       return (
                         <span
                           key={amenity}

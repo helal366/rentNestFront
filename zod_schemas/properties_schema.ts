@@ -8,9 +8,13 @@ export const frontendPropertySearchSchema = z
     rentStatus: RentStatusEnum.optional(),
     minPrice: z.coerce.number().min(0).optional(),
     maxPrice: z.coerce.number().min(0).optional(),
-    page: z.number().optional(),
-    limit: z.number().optional(),
-    amenities: z.array(PropertyAmenityEnum).optional(),
+    page: z.coerce.number().optional(),
+    limit: z.coerce.number().optional(),
+    amenities: z
+      .union([z.string(), z.array(z.string())])
+      .optional()
+      .transform((val) => (Array.isArray(val) ? val : val ? [val] : []))
+      .pipe(z.array(PropertyAmenityEnum)),
   })
   .refine(
     (data) => {

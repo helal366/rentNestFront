@@ -30,9 +30,8 @@ export default function PropertyFilters({
   searchParams: ValidatedPropertySearchParams
 }) {
 
-  const amenitiesParam = searchParams.amenities as string | undefined;
   const [selectedAmenities, setSelectedAmenities] = useState<PropertyAmenity[]>(
-    (amenitiesParam?.split(",") as PropertyAmenity[]) ?? [],
+    searchParams.amenities ?? [],
   );
 
   const [minPriceState, setMinPriceState] = useState<string>(

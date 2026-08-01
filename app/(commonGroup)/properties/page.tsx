@@ -11,6 +11,7 @@ import {
   GetPropertiesResponse,
   PropertiesSearchProps,
   PropertySearchParams,
+  ValidatedPropertySearchParams,
 } from "../_types/propertyTypes";
 import PropertyFilters from "../_components/PropertyFilters";
 import { Suspense } from "react";
@@ -63,13 +64,17 @@ export async function fetchProperties(
 export default async function PropertiesPage({
   searchParams,
 }: PropertiesSearchProps) {
+
   const rawParams: PropertySearchParams = await searchParams; ;
   const parsedResult = frontendPropertySearchSchema.safeParse(rawParams);
+  console.log({parsedResult})
   if (!parsedResult.success) {
     const formattedError = z.treeifyError(parsedResult.error);
     console.dir(formattedError, { depth: null });
   }
-  const validatedParams = parsedResult.success ? parsedResult.data : {};
+  const validatedParams = parsedResult.success
+    ? parsedResult.data
+    : ({} as ValidatedPropertySearchParams);
   const plainParams = {...validatedParams};
 
   const urlParams = new URLSearchParams();
@@ -83,12 +88,10 @@ export default async function PropertiesPage({
   return (
     <section className="max-w-7xl mx-auto px-4 py-6 sm:py-8 lg:py-10">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6 pb-4 border-b border-gray-100">
-
         <div>
           <h1 className="text-xl sm:text-2xl lg:text-3xl font-black text-gray-900 tracking-tight">
             All Properties
           </h1>
-
         </div>
 
         {/* mobile view of side bar filter options*/}
@@ -133,7 +136,7 @@ export default async function PropertiesPage({
           <Suspense fallback={<Loading />}>
             <PropertiesList
               queryString={queryString}
-              resolvedParams={plainParams}
+              searchParams={plainParams}
             />
           </Suspense>
         </main>
