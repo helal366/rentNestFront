@@ -73,29 +73,3 @@ export interface PropertiesSearchProps {
 }
 
 
-export interface getAllPropertiesItemJSON {
-  id: string;
-  propertyCategoryId: string;
-  rentStatus: string;
-  landlordId: string;
-  approvedTenantId: string | null;
-  rentPrice: number;
-  location: string;
-  areaInSqFt: number;
-  amenities?: string[];
-  isDeleted: boolean;
-  deletedAt: string | null;
-  createdAt: string;
-  updatedAt: string;
-  category: {
-    id: string;
-    name: string;
-  };
-  propertyRentRequests: {
-    id: string;
-    isPaid: boolean;
-    requestStatus: string;
-  }[];
-  approvedTenant: getAllPropertiesProfileSummary | null;
-  landlord: getAllPropertiesProfileSummary;
-}
