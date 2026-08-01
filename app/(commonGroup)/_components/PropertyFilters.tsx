@@ -20,18 +20,56 @@ interface PropertyFiltersProps {
   searchParams: PropertySearchParams;
 }
 
-const LOCATIONS = ["JATRABARI", "JURAINE", "MOTIJHEEL", "TIKATULI", "DOYAGANJ", "GULISTAN", "MUGDA", "MANDA", "KAMLAPUR", "FAKIRAPUL", "GOLAPBAG", "GOPIBAG", "BASABO", "KHILGAON", "RAMPURA", "BANASRI", "HATIRJHEEL", "DHANMONDI", "JIGATOLA", "FARMGATE"];
+const LOCATIONS = [
+  "JATRABARI",
+  "JURAINE",
+  "MOTIJHEEL",
+  "TIKATULI",
+  "DOYAGANJ",
+  "GULISTAN",
+  "MUGDA",
+  "MANDA",
+  "KAMLAPUR",
+  "FAKIRAPUL",
+  "GOLAPBAG",
+  "GOPIBAG",
+  "BASABO",
+  "KHILGAON",
+  "RAMPURA",
+  "BANASRI",
+  "HATIRJHEEL",
+  "DHANMONDI",
+  "JIGATOLA",
+  "FARMGATE",
+];
 const RENT_STATUSES = ["AVAILABLE", "RENTED", "PENDING"];
-const AMENITIES = ["WIFI", "PARKING", "AIR_CONDITIONING", "HEATING", "KITCHEN", "WASHER", "DRYER", "SWIMMING_POOL", "GYM", "ELEVATOR"];
-const CATEGORIES = ["APARTMENT", "OFFICE", "SHOP", "STUDIO", "DUPLEX", "HOUSE"]
-export default function PropertyFilters({ searchParams }: PropertyFiltersProps) {
-  const [minPriceState, setMinPriceState] = useState<string>(searchParams.minPrice || "");
+const AMENITIES = [
+  "WIFI",
+  "PARKING",
+  "AIR_CONDITIONING",
+  "HEATING",
+  "KITCHEN",
+  "WASHER",
+  "DRYER",
+  "SWIMMING_POOL",
+  "GYM",
+  "ELEVATOR",
+];
+const CATEGORIES = ["APARTMENT", "OFFICE", "SHOP", "STUDIO", "DUPLEX", "HOUSE"];
+
+export default function PropertyFilters({
+  searchParams,
+}: PropertyFiltersProps) {
+  const [minPriceState, setMinPriceState] = useState<string>(
+    searchParams.minPrice || "",
+  );
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
 
-  const currentAmenities = typeof searchParams.amenities === "string" 
-    ? searchParams.amenities.split(",") 
-    : [];
+  const currentAmenities =
+    typeof searchParams.amenities === "string"
+      ? searchParams.amenities.split(",")
+      : [];
 
   return (
     <form
@@ -159,7 +197,10 @@ export default function PropertyFilters({ searchParams }: PropertyFiltersProps) 
         <Button
           type="button"
           variant="outline"
-          onClick={() => router.push("/properties")}
+          onClick={() => {
+            setMinPriceState("");
+            router.replace("/properties");
+          }}
           className="w-full bg-white text-gray-700 hover:bg-gray-50"
         >
           Clear All

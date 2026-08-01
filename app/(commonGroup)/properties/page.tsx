@@ -102,7 +102,10 @@ export default async function PropertiesPage({ searchParams }: PropertiesSearchP
                   Search Filters
                 </SheetTitle>
               </SheetHeader>
-              <PropertyFilters searchParams={resolvedParams} />
+              <PropertyFilters
+                key={JSON.stringify(searchParams ?? {})}
+                searchParams={resolvedParams}
+              />
             </SheetContent>
           </Sheet>
         </div>
