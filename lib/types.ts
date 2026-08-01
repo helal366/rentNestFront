@@ -1,33 +1,38 @@
 import { LucideProps } from "lucide-react";
 import { ForwardRefExoticComponent, RefAttributes } from "react";
+import { z } from "zod";
 
 export type Role = "ADMIN" | "TENANT" | "LANDLORD";
 export type UserStatus = "BANNED" | "UNBAN";
 export type RentRequestStatus = "PENDING" | "APPROVED" | "REJECTED";
 
-export type PropertyLocation =
-  | "JATRABARI"
-  | "JURAINE"
-  | "MOTIJHEEL"
-  | "TIKATULI"
-  | "DOYAGANJ"
-  | "GULISTAN"
-  | "MUGDA"
-  | "MANDA"
-  | "KAMLAPUR"
-  | "FAKIRAPUL"
-  | "GOLAPBAG"
-  | "GOPIBAG"
-  | "BASABO"
-  | "KHILGAON"
-  | "RAMPURA"
-  | "BANASRI"
-  | "HATIRJHEEL"
-  | "DHANMONDI"
-  | "JIGATOLA"
-  | "FARMGATE";
+export const PropertyLocationEnum = z.enum([
+  "JATRABARI", "JURAINE", "MOTIJHEEL", "TIKATULI", "DOYAGANJ",
+  "GULISTAN", "MUGDA", "MANDA", "KAMLAPUR", "FAKIRAPUL",
+  "GOLAPBAG", "GOPIBAG", "BASABO", "KHILGAON", "RAMPURA",
+  "BANASRI", "HATIRJHEEL", "DHANMONDI", "JIGATOLA", "FARMGATE"
+]);
 
-export type RentStatus = "RENTED" | "PENDING" | "AVAILABLE";
+export const RentStatusEnum = z.enum(["RENTED", "PENDING", "AVAILABLE"]);
+
+export const PropertyAmenityEnum = z.enum([
+  "WIFI", "PARKING", "AIR_CONDITIONING", "HEATING", "KITCHEN",
+  "WASHER", "DRYER", "SWIMMING_POOL", "GYM", "ELEVATOR"
+]);
+
+export const PropertyCategoryEnum = z.enum([
+  "APARTMENT",
+  "OFFICE",
+  "SHOP",
+  "STUDIO",
+  "DUPLEX",
+  "HOUSE",
+]);
+
+export type PropertyLocation = z.infer<typeof PropertyLocationEnum>;
+export type RentStatus = z.infer<typeof RentStatusEnum>;
+export type PropertyAmenity = z.infer<typeof PropertyAmenityEnum>;
+export type PropertyCategory = z.infer<typeof PropertyCategoryEnum>;
 
 export interface IUser {
   success: boolean;

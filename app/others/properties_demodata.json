@@ -1,0 +1,426 @@
+[
+  {
+    "id": "f108e960-466e-4d58-beff-847361d046c9",
+    "propertyCategoryId": "f81e1457-d660-4085-8afb-64813034bf7a",
+    "rentStatus": "RENTED",
+    "landlordId": "03257634-016d-4677-80b1-9b409df1aff5",
+    "approvedTenantId": "866230b5-94b1-4ea3-9cc1-7c39c1f059d8",
+    "rentPrice": 15000,
+    "location": "BASABO",
+    "areaInSqFt": 2700,
+    "amenities": [
+      "ELEVATOR",
+      "WIFI",
+      "PARKING",
+      "KITCHEN"
+    ],
+    "isDeleted": false,
+    "deletedAt": null,
+    "createdAt": "2026-07-12T05:25:42.881Z",
+    "updatedAt": "2026-07-12T10:54:21.176Z",
+    "category": {
+      "id": "f81e1457-d660-4085-8afb-64813034bf7a",
+      "name": "HOUSE"
+    },
+    "propertyRentRequests": [
+      {
+        "id": "af83b531-e1f7-447a-8a5f-703ff5bc37c9",
+        "isPaid": false,
+        "requestStatus": "REJECTED"
+      },
+      {
+        "id": "395d3b5b-5529-4ee6-9575-2537ea1fb72b",
+        "isPaid": true,
+        "requestStatus": "APPROVED"
+      }
+    ],
+    "approvedTenant": {
+      "id": "866230b5-94b1-4ea3-9cc1-7c39c1f059d8",
+      "name": "abir6",
+      "email": "abir6@gmail.com",
+      "contactNo": "01788555111",
+      "userStatus": "UNBAN"
+    },
+    "landlord": {
+      "id": "03257634-016d-4677-80b1-9b409df1aff5",
+      "name": "samir20",
+      "email": "samir20@gmail.com",
+      "contactNo": "01788555989",
+      "userStatus": "UNBAN"
+    }
+  },
+  {
+    "id": "3c540983-025c-4561-a8a4-0ac1570ae95c",
+    "propertyCategoryId": "b2d9e441-4b33-42a0-93ba-2d3a76cefcba",
+    "rentStatus": "AVAILABLE",
+    "landlordId": "383418a8-fd81-43a8-bb79-75ad9f029e8b",
+    "approvedTenantId": null,
+    "rentPrice": 10000,
+    "location": "FARMGATE",
+    "areaInSqFt": 500,
+    "amenities": [
+      "ELEVATOR",
+      "WIFI",
+      
+      "PARKING",
+      "KITCHEN"
+    ],
+    "isDeleted": false,
+    "deletedAt": null,
+    "createdAt": "2026-07-11T14:39:08.407Z",
+    "updatedAt": "2026-07-11T14:50:03.932Z",
+    "category": {
+      "id": "b2d9e441-4b33-42a0-93ba-2d3a76cefcba",
+      "name": "SHOP"
+    },
+    "propertyRentRequests": [
+      {
+        "id": "f87cdf6f-ec56-41f0-8963-2a076e774303",
+        "isPaid": false,
+        "requestStatus": "PENDING"
+      }
+    ],
+    "approvedTenant": null,
+    "landlord": {
+      "id": "383418a8-fd81-43a8-bb79-75ad9f029e8b",
+      "name": "samir19",
+      "email": "samir19@gmail.com",
+      "contactNo": "01788555989",
+      "userStatus": "UNBAN"
+    }
+  },
+  {
+    "id": "a2b3c4d5-1234-5678-90ab-cdef12345678",
+    "propertyCategoryId": "c1f2e3d4-5678-90ab-cdef-1234567890ab",
+    "rentStatus": "AVAILABLE",
+    "landlordId": "03257634-016d-4677-80b1-9b409df1aff5",
+    "approvedTenantId": null,
+    "rentPrice": 25000,
+    "location": "JURAINE",
+    "areaInSqFt": 1800,
+    "amenities": [
+      "ELEVATOR",
+      "WIFI",
+      "PARKING",
+      "KITCHEN"
+     
+    ],
+    "isDeleted": false,
+    "deletedAt": null,
+    "createdAt": "2026-07-15T09:00:00.000Z",
+    "updatedAt": "2026-07-15T09:00:00.000Z",
+    "category": {
+      "id": "c1f2e3d4-5678-90ab-cdef-1234567890ab",
+      "name": "APARTMENT"
+    },
+    "propertyRentRequests": [],
+    "approvedTenant": null,
+    "landlord": {
+      "id": "03257634-016d-4677-80b1-9b409df1aff5",
+      "name": "samir20",
+      "email": "samir20@gmail.com",
+      "contactNo": "01788555989",
+      "userStatus": "UNBAN"
+    }
+  },
+
+  {
+    "id": "e4a5b6c7-8901-2345-6789-abcdef012345",
+    "propertyCategoryId": "f81e1457-d660-4085-8afb-64813034bf7a",
+    "rentStatus": "AVAILABLE",
+    "landlordId": "5a6b7c8d-9e0f-1a2b-3c4d-5e6f7a8b9c0d",
+    "approvedTenantId": null,
+    "rentPrice": 8500,
+    "location": "BANASRI",
+    "areaInSqFt": 1200,
+    "amenities": [
+      "WIFI",
+      "KITCHEN"
+    ],
+    "isDeleted": false,
+    "deletedAt": null,
+    "createdAt": "2026-07-20T04:12:11.000Z",
+    "updatedAt": "2026-07-20T04:12:11.000Z",
+    "category": {
+      "id": "f81e1457-d660-4085-8afb-64813034bf7a",
+      "name": "APPARTMENT"
+    },
+    "propertyRentRequests": [
+      {
+        "id": "cc23dd44-ee55-66ff-77aa-88bbcc99dd00",
+        "isPaid": false,
+        "requestStatus": "PENDING"
+      }
+    ],
+    "approvedTenant": null,
+    "landlord": {
+      "id": "5a6b7c8d-9e0f-1a2b-3c4d-5e6f7a8b9c0d",
+      "name": "rahim_landlord",
+      "email": "rahim@gmail.com",
+      "contactNo": "01711223344",
+      "userStatus": "UNBAN"
+    }
+  },
+  {
+    "id": "bc7d8e9f-0a1b-2c3d-4e5f-6a7b8c9d0e1f",
+    "propertyCategoryId": "b2d9e441-4b33-42a0-93ba-2d3a76cefcba",
+    "rentStatus": "RENTED",
+    "landlordId": "03257634-016d-4677-80b1-9b409df1aff5",
+    "approvedTenantId": "9f8e7d6c-5b4a-3f2e-1d0c-9b8a7f6e5d4c",
+    "rentPrice": 45000,
+    "location": "DHANMONDI",
+    "areaInSqFt": 3100,
+    "amenities": [
+      "ELEVATOR",
+      "WIFI",
+      "PARKING",
+      "KITCHEN",
+      "GYM"
+    ],
+    "isDeleted": false,
+    "deletedAt": null,
+    "createdAt": "2026-07-18T11:22:33.000Z",
+    "updatedAt": "2026-07-19T15:30:00.000Z",
+    "category": {
+      "id": "b2d9e441-4b33-42a0-93ba-2d3a76cefcba",
+      "name": "OFFICE"
+    },
+    "propertyRentRequests": [
+      {
+        "id": "11aa22bb-33cc-44dd-55ee-66ff77aa88bb",
+        "isPaid": true,
+        "requestStatus": "APPROVED"
+      }
+    ],
+    "approvedTenant": {
+      "id": "9f8e7d6c-5b4a-3f2e-1d0c-9b8a7f6e5d4c",
+      "name": "banned_user_test",
+      "email": "badtenant@gmail.com",
+      "contactNo": "01999888777",
+      "userStatus": "BANNED"
+    },
+    "landlord": {
+      "id": "03257634-016d-4677-80b1-9b409df1aff5",
+      "name": "samir20",
+      "email": "samir20@gmail.com",
+      "contactNo": "01788555989",
+      "userStatus": "UNBAN"
+    }
+  },
+  {
+    "id": "71a23b4c-5d6e-7f8a-9b0c-1d2e3f4a5b6c",
+    "propertyCategoryId": "e1d2c3b4-a5b6-c7d8-e9f0-1a2b3c4d5e6f",
+    "rentStatus": "AVAILABLE",
+    "landlordId": "383418a8-fd81-43a8-bb79-75ad9f029e8b",
+    "approvedTenantId": null,
+    "rentPrice": 12000,
+    "location": "DHANMONDI",
+    "areaInSqFt": 950,
+    "amenities": [],
+    "isDeleted": false,
+    "deletedAt": null,
+    "createdAt": "2026-07-22T08:00:00.000Z",
+    "updatedAt": "2026-07-22T08:00:00.000Z",
+    "category": {
+      "id": "e1d2c3b4-a5b6-c7d8-e9f0-1a2b3c4d5e6f",
+      "name": "FLAT"
+    },
+    "propertyRentRequests": [],
+    "approvedTenant": null,
+    "landlord": {
+      "id": "383418a8-fd81-43a8-bb79-75ad9f029e8b",
+      "name": "samir19",
+      "email": "samir19@gmail.com",
+      "contactNo": "01788555989",
+      "userStatus": "UNBAN"
+    }
+  },
+  {
+    "id": "99887766-5544-3322-1100-aabbccddeeff",
+    "propertyCategoryId": "f81e1457-d660-4085-8afb-64813034bf7a",
+    "rentStatus": "AVAILABLE",
+    "landlordId": "383418a8-fd81-43a8-bb79-75ad9f029e8b",
+    "approvedTenantId": null,
+    "rentPrice": 16000,
+    "location": "DHANMONDI",
+    "areaInSqFt": 1500,
+    "amenities": [
+      "PARKING"
+    ],
+    "isDeleted": true,
+    "deletedAt": "2026-07-25T14:20:00.000Z",
+    "updatedAt": "2026-07-25T14:20:00.000Z",
+    "category": {
+      "id": "f81e1457-d660-4085-8afb-64813034bf7a",
+      "name": "HOUSE"
+    },
+    "propertyRentRequests": [],
+    "approvedTenant": null,
+    "landlord": {
+      "id": "383418a8-fd81-43a8-bb79-75ad9f029e8b",
+      "name": "samir19",
+      "email": "samir19@gmail.com",
+      "contactNo": "01788555989",
+      "userStatus": "UNBAN"
+    }
+  },
+  
+  {
+    "id": "2da3e4f5-6789-0123-4567-89abcdef0123",
+    "propertyCategoryId": "b2d9e441-4b33-42a0-93ba-2d3a76cefcba",
+    "rentStatus": "AVAILABLE",
+    "landlordId": "03257634-016d-4677-80b1-9b409df1aff5",
+    "approvedTenantId": null,
+    "rentPrice": 65000,
+    "location": "MOTIJHEEL",
+    "areaInSqFt": 4500,
+    "amenities": [
+      "ELEVATOR",
+      "PARKING"
+    ],
+    "isDeleted": false,
+    "deletedAt": null,
+    "createdAt": "2026-07-28T09:15:00.000Z",
+    "updatedAt": "2026-07-28T09:15:00.000Z",
+    "category": {
+      "id": "b2d9e441-4b33-42a0-93ba-2d3a76cefcba",
+      "name": "OFFICE"
+    },
+    "propertyRentRequests": [
+      {
+        "id": "44bb55cc-66dd-77ee-88ff-99aa00bb11cc",
+        "isPaid": false,
+        "requestStatus": "PENDING"
+      },
+      {
+        "id": "55cc66dd-77ee-88ff-99aa-00bb11cc22dd",
+        "isPaid": false,
+        "requestStatus": "PENDING"
+      }
+    ],
+    "approvedTenant": null,
+    "landlord": {
+      "id": "03257634-016d-4677-80b1-9b409df1aff5",
+      "name": "samir20",
+      "email": "samir20@gmail.com",
+      "contactNo": "01788555989",
+      "userStatus": "UNBAN"
+    }
+  },
+  {
+    "id": "bc12de34-fa56-7890-abcd-ef1234567890",
+    "propertyCategoryId": "a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d",
+    "rentStatus": "RENTED",
+    "landlordId": "7b6a5f4e-3d2c-1b0a-9f8e-7d6c5b4a3f2e",
+    "approvedTenantId": "11223344-5566-7788-9900-aabbccddeeff",
+    "rentPrice": 3500,
+    "location": "KHILGAON",
+    "areaInSqFt": 250,
+    "amenities": [
+      "WIFI"
+    ],
+    "isDeleted": false,
+    "deletedAt": null,
+    "createdAt": "2026-07-29T10:00:00.000Z",
+    "updatedAt": "2026-07-30T11:45:12.000Z",
+    "category": {
+      "id": "a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d",
+      "name": "SHOP"
+    },
+    "propertyRentRequests": [
+      {
+        "id": "889900aa-bbcc-ddeeff00-1122334455",
+        "isPaid": true,
+        "requestStatus": "APPROVED"
+      }
+    ],
+    "approvedTenant": {
+      "id": "11223344-5566-7788-9900-aabbccddeeff",
+      "name": "tanvir_student",
+      "email": "tanvir@gmail.com",
+      "contactNo": "01555444333",
+      "userStatus": "UNBAN"
+    },
+    "landlord": {
+      "id": "7b6a5f4e-3d2c-1b0a-9f8e-7d6c5b4a3f2e",
+      "name": "banned_landlord_test",
+      "email": "badlandlord@gmail.com",
+      "contactNo": "01811222333",
+      "userStatus": "BANNED"
+    }
+  },
+  {
+    "id": "f5e4d3c2-b1a0-9f8e-7d6c-5b4a3f2e1d0c",
+    "propertyCategoryId": "f81e1457-d660-4085-8afb-64813034bf7a",
+    "rentStatus": "AVAILABLE",
+    "landlordId": "383418a8-fd81-43a8-bb79-75ad9f029e8b",
+    "approvedTenantId": null,
+    "rentPrice": 18000,
+    "location": "GOLAPBAG",
+    "areaInSqFt": 1400,
+    "amenities": [
+      "WIFI",
+      "PARKING",
+      "KITCHEN"
+    ],
+    "isDeleted": false,
+    "deletedAt": null,
+    "createdAt": "2026-07-25T16:30:22.000Z",
+    "updatedAt": "2026-07-26T12:00:00.000Z",
+    "category": {
+      "id": "f81e1457-d660-4085-8afb-64813034bf7a",
+      "name": "APARTMENT"
+    },
+    "propertyRentRequests": [
+      {
+        "id": "ab12cd34-ef56-7890-1234-567890abcdef",
+        "isPaid": true,
+        "requestStatus": "REJECTED"
+      }
+    ],
+    "approvedTenant": null,
+    "landlord": {
+      "id": "383418a8-fd81-43a8-bb79-75ad9f029e8b",
+      "name": "samir19",
+      "email": "samir19@gmail.com",
+      "contactNo": "01788555989",
+      "userStatus": "UNBAN"
+    }
+  },
+  {
+    "id": "00000000-1111-2222-3333-444455556666",
+    "propertyCategoryId": "c1f2e3d4-5678-90ab-cdef-1234567890ab",
+    "rentStatus": "AVAILABLE",
+    "landlordId": "5a6b7c8d-9e0f-1a2b-3c4d-5e6f7a8b9c0d",
+    "approvedTenantId": null,
+    "rentPrice": 35000,
+    "location": "MUGDA",
+    "areaInSqFt": 2200,
+    "amenities": [
+      "ELEVATOR",
+      "WIFI",
+      
+      "PARKING",
+      "KITCHEN"
+     
+    ],
+    "isDeleted": false,
+    "deletedAt": null,
+    "createdAt": "2026-07-31T23:59:59.000Z",
+    "updatedAt": "2026-07-31T23:59:59.000Z",
+    "category": {
+      "id": "c1f2e3d4-5678-90ab-cdef-1234567890ab",
+      "name": "DUPLEX"
+    },
+    "propertyRentRequests": [],
+    "approvedTenant": null,
+    "landlord": {
+      "id": "5a6b7c8d-9e0f-1a2b-3c4d-5e6f7a8b9c0d",
+      "name": "rahim_landlord",
+      "email": "rahim@gmail.com",
+      "contactNo": "01711223344",
+      "userStatus": "UNBAN"
+    }
+  }
+]
+

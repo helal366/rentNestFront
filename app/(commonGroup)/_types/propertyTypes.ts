@@ -1,4 +1,4 @@
-import { PropertyLocation, RentRequestStatus, RentStatus, UserStatus } from "@/lib/types";
+import { PropertyAmenity, PropertyLocation, RentRequestStatus, RentStatus, UserStatus } from "@/lib/types";
 
 // properties 
 export interface getAllPropertiesMeta {
@@ -36,7 +36,7 @@ export interface getAllPropertiesItem {
   rentPrice: number;
   location: PropertyLocation;
   areaInSqFt: number;
-  amenities?: string[];
+  amenities?: PropertyAmenity[];
   isDeleted: boolean;
   deletedAt: string | null;
   createdAt: string;
@@ -55,4 +55,47 @@ export interface GetPropertiesResponse {
     meta: getAllPropertiesMeta;
     properties: getAllPropertiesItem[];
   };
+}
+
+export interface PropertySearchParams {
+  location?: string;
+  category?: string;
+  rentStatus?: string;
+  minPrice?: string;
+  maxPrice?: string;
+  amenities?: string; 
+  page?: string;
+  limit?: string;
+}
+
+export interface PropertiesSearchProps {
+  searchParams: Promise<PropertySearchParams> | PropertySearchParams;
+}
+
+
+export interface getAllPropertiesItemJSON {
+  id: string;
+  propertyCategoryId: string;
+  rentStatus: string;
+  landlordId: string;
+  approvedTenantId: string | null;
+  rentPrice: number;
+  location: string;
+  areaInSqFt: number;
+  amenities?: string[];
+  isDeleted: boolean;
+  deletedAt: string | null;
+  createdAt: string;
+  updatedAt: string;
+  category: {
+    id: string;
+    name: string;
+  };
+  propertyRentRequests: {
+    id: string;
+    isPaid: boolean;
+    requestStatus: string;
+  }[];
+  approvedTenant: getAllPropertiesProfileSummary | null;
+  landlord: getAllPropertiesProfileSummary;
 }
