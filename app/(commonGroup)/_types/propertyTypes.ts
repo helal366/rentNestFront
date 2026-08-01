@@ -1,4 +1,6 @@
-import { PropertyAmenity, PropertyLocation, RentRequestStatus, RentStatus, UserStatus } from "@/lib/types";
+import { PropertyAmenity, PropertyCategory, PropertyLocation, RentRequestStatus, RentStatus, UserStatus } from "@/lib/types";
+import { frontendPropertySearchSchema } from "@/zod_schemas/properties_schema";
+import z from "zod";
 
 // properties 
 export interface getAllPropertiesMeta {
@@ -56,6 +58,9 @@ export interface GetPropertiesResponse {
     properties: getAllPropertiesItem[];
   };
 }
+export type ValidatedPropertySearchParams = z.infer<
+  typeof frontendPropertySearchSchema
+>;
 
 export interface PropertySearchParams {
   location?: string;
@@ -63,7 +68,7 @@ export interface PropertySearchParams {
   rentStatus?: string;
   minPrice?: string;
   maxPrice?: string;
-  amenities?: string; 
+  amenities?: string | string[];
   page?: string;
   limit?: string;
 }
@@ -71,5 +76,3 @@ export interface PropertySearchParams {
 export interface PropertiesSearchProps {
   searchParams: Promise<PropertySearchParams> | PropertySearchParams;
 }
-
-

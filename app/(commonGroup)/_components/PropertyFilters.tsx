@@ -6,6 +6,15 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
+import { handleFilterSubmit } from "../_actions/propertyActions";
+import {
+  PropertyAmenity,
+  PropertyAmenityEnum,
+  PropertyCategoryEnum,
+  PropertyLocationEnum,
+  RentStatusEnum,
+} from "@/lib/types";
+import { ValidatedPropertySearchParams } from "../_types/propertyTypes";
 import {
   Select,
   SelectContent,
@@ -13,64 +22,32 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { handleFilterSubmit } from "../_actions/propertyActions";
-import { PropertySearchParams } from "../_types/propertyTypes";
 
-interface PropertyFiltersProps {
-  searchParams: PropertySearchParams;
-}
-
-const LOCATIONS = [
-  "JATRABARI",
-  "JURAINE",
-  "MOTIJHEEL",
-  "TIKATULI",
-  "DOYAGANJ",
-  "GULISTAN",
-  "MUGDA",
-  "MANDA",
-  "KAMLAPUR",
-  "FAKIRAPUL",
-  "GOLAPBAG",
-  "GOPIBAG",
-  "BASABO",
-  "KHILGAON",
-  "RAMPURA",
-  "BANASRI",
-  "HATIRJHEEL",
-  "DHANMONDI",
-  "JIGATOLA",
-  "FARMGATE",
-];
-const RENT_STATUSES = ["AVAILABLE", "RENTED", "PENDING"];
-const AMENITIES = [
-  "WIFI",
-  "PARKING",
-  "AIR_CONDITIONING",
-  "HEATING",
-  "KITCHEN",
-  "WASHER",
-  "DRYER",
-  "SWIMMING_POOL",
-  "GYM",
-  "ELEVATOR",
-];
-const CATEGORIES = ["APARTMENT", "OFFICE", "SHOP", "STUDIO", "DUPLEX", "HOUSE"];
 
 export default function PropertyFilters({
-  searchParams,
-}: PropertyFiltersProps) {
-  const [minPriceState, setMinPriceState] = useState<string>(
-    searchParams.minPrice || "",
+  searchParams
+}: {
+  searchParams: ValidatedPropertySearchParams
+}) {
+
+  const amenitiesParam = searchParams.amenities as string | undefined;
+  const [selectedAmenities, setSelectedAmenities] = useState<PropertyAmenity[]>(
+    (amenitiesParam?.split(",") as PropertyAmenity[]) ?? [],
   );
+
+  const [minPriceState, setMinPriceState] = useState<string>(
+    searchParams.minPrice?.toString() || "",
+  );
+
   const [isPending, startTransition] = useTransition();
+
   const router = useRouter();
 
-  const currentAmenities =
-    typeof searchParams.amenities === "string"
-      ? searchParams.amenities.split(",")
-      : [];
-
+  const handleAmenityChange = (amenity: PropertyAmenity, checked: boolean) => {
+    setSelectedAmenities((prev) =>
+      checked ? [...prev, amenity] : prev.filter((a) => a !== amenity),
+    );
+  };
   return (
     <form
       action={(formData) => startTransition(() => handleFilterSubmit(formData))}
@@ -87,7 +64,7 @@ export default function PropertyFilters({
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="ALL">All Locations</SelectItem>
-            {LOCATIONS.map((loc) => (
+            {PropertyLocationEnum.options.map((loc) => (
               <SelectItem key={loc} value={loc}>
                 {loc}
               </SelectItem>
@@ -110,7 +87,7 @@ export default function PropertyFilters({
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="ALL">Any Status</SelectItem>
-            {RENT_STATUSES.map((status) => (
+            {RentStatusEnum.options.map((status) => (
               <SelectItem key={status} value={status}>
                 {status}
               </SelectItem>
@@ -130,7 +107,7 @@ export default function PropertyFilters({
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="ALL">All Categories</SelectItem>
-            {CATEGORIES.map((cat) => (
+            {PropertyCategoryEnum.options.map((cat) => (
               <SelectItem key={cat} value={cat}>
                 {cat}
               </SelectItem>
@@ -169,13 +146,16 @@ export default function PropertyFilters({
           Amenities (Matches Any)
         </Label>
         <div className="space-y-2 max-h-44 overflow-y-auto border p-3 rounded-lg bg-gray-50">
-          {AMENITIES.map((amenity) => (
+          {PropertyAmenityEnum.options.map((amenity) => (
             <div key={amenity} className="flex items-center space-x-2">
               <Checkbox
                 id={amenity}
                 name="amenities"
                 value={amenity}
-                defaultChecked={currentAmenities.includes(amenity)}
+                checked={selectedAmenities.includes(amenity)}
+                onCheckedChange={(checked) =>
+                  handleAmenityChange(amenity, checked === true)
+                }
               />
               <label
                 htmlFor={amenity}

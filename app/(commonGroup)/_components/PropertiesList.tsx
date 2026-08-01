@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { fetchProperties } from "../properties/page";
-import { GetPropertiesResponse, PropertySearchParams } from "../_types/propertyTypes";
+import { GetPropertiesResponse,  ValidatedPropertySearchParams } from "../_types/propertyTypes";
 import Link from "next/link";
 
 
@@ -9,7 +9,7 @@ const PropertiesList = async ({
   resolvedParams,
 }: {
   queryString: string;
-  resolvedParams: PropertySearchParams;
+  resolvedParams: ValidatedPropertySearchParams;
 }) => {
   const apiResponse = (await fetchProperties(
     queryString,
@@ -91,8 +91,8 @@ const PropertiesList = async ({
                   <div className="flex flex-wrap gap-1 pt-3 border-t border-gray-100">
                     {property.amenities?.map((amenity) => {
                       const isMatched =
-                        typeof resolvedParams.amenities === "string" &&
-                        resolvedParams.amenities.split(",").includes(amenity);
+                        resolvedParams.amenities?.includes(amenity);
+                       
                       return (
                         <span
                           key={amenity}
