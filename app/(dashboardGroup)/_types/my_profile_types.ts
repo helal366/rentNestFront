@@ -37,7 +37,7 @@ export type TenantRentalRequest = {
   isPaid: boolean;
   requestStatus: RentRequestStatus;
 
-  Property: {
+  rentalRequestProperty: {
     rentPrice: number;
     areaInSqFt: number;
     location: PropertyLocation; // or your enum

@@ -91,13 +91,13 @@ const MyProfileJSX = ({ data }: Props ) => {
                 <Separator />
 
                 <p>
-                  <strong>Property Rent:</strong> TK {r.Property?.rentPrice}
+                  <strong>Property Rent:</strong> TK {r.rentalRequestProperty?.rentPrice}
                 </p>
                 <p>
-                  <strong>Area:</strong> {r.Property?.areaInSqFt} sqft
+                  <strong>Area:</strong> {r.rentalRequestProperty?.areaInSqFt} sqft
                 </p>
                 <p>
-                  <strong>Location:</strong> {r.Property?.location}
+                  <strong>Location:</strong> {r.rentalRequestProperty?.location}
                 </p>
 
                 <Separator />
