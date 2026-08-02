@@ -106,4 +106,14 @@ pnpm dev
 * refactor: You rewrote code to make it cleaner, but its functionality stayed exactly the same.
 * chore: You updated build tasks, dependencies, or package configs (like adding a library).
 
+- Use feat: if you added new capabilitiesUse this if the logic change introduces a new feature or extends existing behavior.
+- Example: feat: update login logic to support multi-factor authenticationUse 
 
+- fix: if the old logic was brokenUse this if the logic update corrects a bug, resolves an edge case, or stops a crash.
+- Example: fix: update discount logic to prevent negative checkout totalsUse 
+
+- refactor: if the logic does the exact same thing, just betterUse this if you rewrote the logic to make it faster, cleaner, or easier to read, without changing how the app behaves for the user.
+- Example: refactor: simplify user validation logic using array methodsUse 
+
+- test: if the logic is only for verificationUse this if you are updating the logic inside your automated test files
+- Example: test: update assertion logic for payment gateway tests

@@ -25,9 +25,7 @@ const initialState: LoginActionState = {
 
 export default function LoginForm() {
   const [state, formAction, isPending] = useActionState(loginAction, initialState);
-  console.log({state})
-  console.log({formAction})
-  console.log({isPending})
+
   
   useEffect(() => {
     if (!state || state.statusCode === 0) {
@@ -39,7 +37,7 @@ export default function LoginForm() {
     } else {
       toast.error(state.message || "Login failed");
     }
-  }, [state]);
+  }, [state]);  
 
   return (
     <Card className="w-full max-w-md mx-auto">

@@ -2,6 +2,10 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import rawPropertiesData from "../../../others/properties_demodata.json";
+import {
+  getAllPropertiesItem,
+} from "../../_types/propertyTypes";
 import {
   Card,
   CardContent,
@@ -9,11 +13,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import rawPropertiesData from "../../../others/properties_demodata.json";
-import {
-  getAllPropertiesItemJSON,
-  getAllPropertiesItem,
-} from "../../_types/propertyTypes";
 
 interface PropertyDetailPageProps {
   params: Promise<{
@@ -21,7 +20,7 @@ interface PropertyDetailPageProps {
   }>;
 }
 
-const mockData = rawPropertiesData as getAllPropertiesItemJSON[];
+const mockData = rawPropertiesData as getAllPropertiesItem[];
 const propertiesData = mockData as unknown as getAllPropertiesItem[];
 
 export default async function PropertyDetailPage({
