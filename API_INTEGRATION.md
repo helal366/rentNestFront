@@ -206,3 +206,30 @@ This document maps the frontend components to their respective backend API endpo
 
     * Back button → `/properties`
 
+# My Profile Components
+
+## Profile Page
+
+### `MyProfile` (`app/my-profile/page.tsx`)
+
+* **Backend Endpoint:** `GET ${process.env.BACKEND_VERCEL_URL}/api/auth/me`
+
+* **Description:**
+
+  * Fetches authenticated user data using `getMe()` (SSR)
+  * Returns full profile including:
+
+    * Basic user info
+    * Owned properties (if landlord)
+    * Rental requests (if tenant)
+    * Reviews
+    * Approved rentals
+  * Handles:
+
+    * No data → displays `"No profile found"`
+  * Passes data to `MyProfileJSX` component
+
+---
+
+
+

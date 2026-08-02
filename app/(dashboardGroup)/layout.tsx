@@ -15,7 +15,7 @@ const DashboardGroupLayout = async ({
       <SidebarProvider>
         <div className="grid md:grid-cols-3 lg:grid-cols-4">
           <DashboardSidebar user={profile} />
-          <main className="md:col-span-2 lg:col-span-3">{children}</main>
+          <main className="md:col-span-2 lg:col-span-3 flex justify-center">{children}</main>
         </div>
       </SidebarProvider>
     </section>

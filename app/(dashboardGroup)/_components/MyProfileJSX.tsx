@@ -166,7 +166,7 @@ const MyProfileJSX = ({ data }: Props ) => {
                   {" "}
                   <strong>Location:</strong> {p.location}{" "}
                 </p>
-                ```
+                
                 <div className="flex gap-2 flex-wrap">
                   {p.amenities?.map((a: string, idx: number) => (
                     <Badge key={idx} variant="secondary">

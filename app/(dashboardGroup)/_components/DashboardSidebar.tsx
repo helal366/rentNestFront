@@ -11,7 +11,7 @@ import { UserResponse } from "../_types/my_profile_types";
 const DashboardSidebar = ({ user }: { user: UserResponse }) => {
   const role = user?.data?.role;
 
-  const roleItems = role_sidebar_items()[role] || [];
+  const roleItems =role? role_sidebar_items()[role] : [];
   const commonItems = common_sidebar_items();
 
   return (
