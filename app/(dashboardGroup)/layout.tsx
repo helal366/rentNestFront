@@ -13,9 +13,9 @@ const DashboardGroupLayout = async ({
     <section className="min-h-screen flex flex-col">
       <Navbar user={profile} />
       <SidebarProvider>
-        <div className="flex flex-1">
+        <div className="grid md:grid-cols-3 lg:grid-cols-4">
           <DashboardSidebar user={profile} />
-          <main className="flex-1 min-w-0">{children}</main>
+          <main className="md:col-span-2 lg:col-span-3">{children}</main>
         </div>
       </SidebarProvider>
     </section>
