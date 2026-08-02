@@ -18,7 +18,6 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 export default function Navbar({ user }: { user: UserResponse | null }) {
-  console.log("user response profile from navbar: ", user)
   const userMenuItems= getUserMenuItems(user);
 
   return (
