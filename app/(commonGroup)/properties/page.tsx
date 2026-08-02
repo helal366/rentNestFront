@@ -13,10 +13,10 @@ import {
   PropertySearchParams,
   ValidatedPropertySearchParams,
 } from "../_types/propertyTypes";
-import PropertyFilters from "../_components/PropertyFilters";
+import PropertyFilters from "../_components/properties/PropertyFilters";
 import { Suspense } from "react";
 import Loading from "../loading";
-import PropertiesList from "../_components/PropertiesList";
+import PropertiesList from "../_components/properties/PropertiesList";
 import { frontendPropertySearchSchema } from "@/zod_schemas/properties_schema";
 import z from "zod";
 
@@ -64,10 +64,9 @@ export async function fetchProperties(
 export default async function PropertiesPage({
   searchParams,
 }: PropertiesSearchProps) {
-
-  const rawParams: PropertySearchParams = await searchParams; ;
+  const rawParams: PropertySearchParams = await searchParams;
   const parsedResult = frontendPropertySearchSchema.safeParse(rawParams);
-  console.log({parsedResult})
+  console.log({ parsedResult });
   if (!parsedResult.success) {
     const formattedError = z.treeifyError(parsedResult.error);
     console.dir(formattedError, { depth: null });
@@ -75,7 +74,7 @@ export default async function PropertiesPage({
   const validatedParams = parsedResult.success
     ? parsedResult.data
     : ({} as ValidatedPropertySearchParams);
-  const plainParams = {...validatedParams};
+  const plainParams = { ...validatedParams };
 
   const urlParams = new URLSearchParams();
   Object.entries(plainParams).forEach(([key, value]) => {

@@ -1,4 +1,4 @@
-import { PropertyAmenity, PropertyCategory, PropertyLocation, RentRequestStatus, RentStatus, UserStatus } from "@/lib/types";
+import { PropertyAmenity, PropertyLocation, RentRequestStatus, RentStatus, UserStatus } from "@/lib/types";
 import { frontendPropertySearchSchema } from "@/zod_schemas/properties_schema";
 import z from "zod";
 

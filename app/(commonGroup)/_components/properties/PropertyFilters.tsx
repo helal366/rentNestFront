@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
-import { handleFilterSubmit } from "../_actions/propertyActions";
+import { handleFilterSubmit } from "../../_actions/propertyActions";
 import {
   PropertyAmenity,
   PropertyAmenityEnum,
@@ -14,7 +14,7 @@ import {
   PropertyLocationEnum,
   RentStatusEnum,
 } from "@/lib/types";
-import { ValidatedPropertySearchParams } from "../_types/propertyTypes";
+import { ValidatedPropertySearchParams } from "../../_types/propertyTypes";
 import {
   Select,
   SelectContent,
@@ -23,13 +23,11 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-
 export default function PropertyFilters({
-  searchParams
+  searchParams,
 }: {
-  searchParams: ValidatedPropertySearchParams
+  searchParams: ValidatedPropertySearchParams;
 }) {
-
   const [selectedAmenities, setSelectedAmenities] = useState<PropertyAmenity[]>(
     searchParams.amenities ?? [],
   );

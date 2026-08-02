@@ -1,9 +1,11 @@
 import { Button } from "@/components/ui/button";
-import { fetchProperties } from "../properties/page";
-import { GetPropertiesResponse,  ValidatedPropertySearchParams } from "../_types/propertyTypes";
+import { fetchProperties } from "../../properties/page";
+import {
+  GetPropertiesResponse,
+  ValidatedPropertySearchParams,
+} from "../../_types/propertyTypes";
 import Link from "next/link";
 import { RetryButton } from "./RetryButton";
-
 
 const PropertiesList = async ({
   queryString,
