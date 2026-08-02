@@ -1,14 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { IUser } from "@/lib/types";
 import { role_sidebar_items, common_sidebar_items } from "@/app/(dashboardGroup)/_configs/sidebar_items";
+import { UserResponse } from "@/app/(dashboardGroup)/_types/my_profile_types";
 
 const MobileDashboardMenu = ({
   user,
   onClick,
 }: {
-  user: IUser;
+  user: UserResponse;
   onClick: () => void;
 }) => {
   const role = user?.data?.role;

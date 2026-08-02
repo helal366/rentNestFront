@@ -82,7 +82,7 @@ pnpm add jsonwebtoken && pnpm add -D @types/jsonwebtoken
 * now create a folder named services at root directiory.
 * create logout.ts into the services folder.
 * create types.ts file into lib folder.
-* into types.ts, create IUser interface according to backend sendResponse
+* into types.ts, create UserResponse/IUser interface according to backend sendResponse
 * into app folder, create (dashboardGroup) and other dashboard routes.
 * into services folder, create a generateAccessToken.ts file to generate accessToken from refreshToken in case of expired accessToken.
 * into services folder, create a getMe.ts file to get user profile.
@@ -95,6 +95,12 @@ pnpm add jsonwebtoken && pnpm add -D @types/jsonwebtoken
 ```
 rm -rf .next
 pnpm dev
+```
+
+* cache clean
+```
+taskkill //f //im node.exe
+
 ```
 
 

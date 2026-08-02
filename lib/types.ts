@@ -2,9 +2,14 @@ import { LucideProps } from "lucide-react";
 import { ForwardRefExoticComponent, RefAttributes } from "react";
 import { z } from "zod";
 
-export type Role = "ADMIN" | "TENANT" | "LANDLORD";
-export type UserStatus = "BANNED" | "UNBAN";
-export type RentRequestStatus = "PENDING" | "APPROVED" | "REJECTED";
+export const RoleEnum = z.enum(["ADMIN", "TENANT", "LANDLORD"]);
+export const RentRequestStatusEnum = z.enum([
+  "PENDING",
+  "APPROVED",
+  "REJECTED",
+]);
+export const UserStatusEnum = z.enum(["BANNED", "UNBAN"]);
+export const RentStatusEnum = z.enum(["RENTED", "PENDING", "AVAILABLE"]);
 
 export const PropertyLocationEnum = z.enum([
   "JATRABARI", "JURAINE", "MOTIJHEEL", "TIKATULI", "DOYAGANJ",
@@ -13,12 +18,13 @@ export const PropertyLocationEnum = z.enum([
   "BANASRI", "HATIRJHEEL", "DHANMONDI", "JIGATOLA", "FARMGATE"
 ]);
 
-export const RentStatusEnum = z.enum(["RENTED", "PENDING", "AVAILABLE"]);
 
 export const PropertyAmenityEnum = z.enum([
   "WIFI", "PARKING", "AIR_CONDITIONING", "HEATING", "KITCHEN",
   "WASHER", "DRYER", "SWIMMING_POOL", "GYM", "ELEVATOR"
 ]);
+
+
 
 export const PropertyCategoryEnum = z.enum([
   "APARTMENT",
@@ -29,29 +35,14 @@ export const PropertyCategoryEnum = z.enum([
   "HOUSE",
 ]);
 
+export type Role = z.infer<typeof RoleEnum>;
 export type PropertyLocation = z.infer<typeof PropertyLocationEnum>;
 export type RentStatus = z.infer<typeof RentStatusEnum>;
 export type PropertyAmenity = z.infer<typeof PropertyAmenityEnum>;
 export type PropertyCategory = z.infer<typeof PropertyCategoryEnum>;
+export type RentRequestStatus = z.infer<typeof RentRequestStatusEnum>;
+export type UserStatus = z.infer<typeof UserStatusEnum>;
 
-export interface IUser {
-  success: boolean;
-  statusCode: number; 
-  message: string;
-  data: {
-    id: string;
-    name: string;
-    email: string;
-    role: Role;
-    address: string;
-    contactNo: string;
-    userStatus: UserStatus;
-    isDeleted: boolean;
-    deletedAt: string | Date | null; 
-    createdAt: string | Date;
-    updatedAt: string | Date;
-  };
-}
 
 export type LoginActionState = {
   success: boolean;

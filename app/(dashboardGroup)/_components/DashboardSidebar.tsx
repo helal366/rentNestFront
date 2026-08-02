@@ -1,14 +1,14 @@
 "use client";
 
-import { IUser } from "@/lib/types";
 import Link from "next/link";
 import {
   common_sidebar_items,
   role_sidebar_items,
 } from "../_configs/sidebar_items";
 import { LayoutDashboard } from "lucide-react";
+import { UserResponse } from "../_types/my_profile_types";
 
-const DashboardSidebar = ({ user }: { user: IUser }) => {
+const DashboardSidebar = ({ user }: { user: UserResponse }) => {
   const role = user?.data?.role;
 
   const roleItems = role_sidebar_items()[role] || [];

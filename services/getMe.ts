@@ -20,6 +20,6 @@ export const getMe = async()=>{
             tags: ["my-profile"]
         }
     });
-    const result = res.json();
+    const result =await res.json();
     return result
 }
