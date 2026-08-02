@@ -15,7 +15,7 @@ const TenantDashboard = async () => {
   const user = result.data;
 
   return (
-    <section className="max-w-5xl mx-auto px-4 py-8 bg-green-100">
+    <section className=" px-4 py-8">
       {/* Title */}
       <h1 className="text-2xl md:text-3xl font-bold mb-6 text-center">
         Tenant Dashboard

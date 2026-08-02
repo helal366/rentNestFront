@@ -102,7 +102,7 @@ const LandlordDashboard = async () => {
               <p className="font-semibold text-base">{property.location}</p>
               <p className="text-sm">{property.areaInSqFt} sqft</p>
               <p className="text-primary font-bold mt-1">
-                ৳ {property.rentPrice}
+                TK {property.rentPrice}
               </p>
 
               <span className="text-xs mt-2 inline-block bg-muted px-2 py-0.5 rounded">

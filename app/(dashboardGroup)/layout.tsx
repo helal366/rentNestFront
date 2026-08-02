@@ -13,10 +13,8 @@ const DashboardGroupLayout = async ({
     <section className="min-h-screen flex flex-col">
       <Navbar user={profile} />
       <SidebarProvider>
-        <div className="grid md:grid-cols-3 lg:grid-cols-4">
           <DashboardSidebar user={profile} />
-          <main className="md:col-span-2 lg:col-span-3 flex justify-center">{children}</main>
-        </div>
+          <main className="flex-1 p-6">{children}</main>
       </SidebarProvider>
     </section>
   );

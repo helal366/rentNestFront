@@ -21,7 +21,7 @@ export default function Navbar({ user }: { user: UserResponse | null }) {
   const userMenuItems= getUserMenuItems(user);
 
   return (
-    <nav className="w-full border-b bg-background sticky top-0 z-50">
+    <nav className="w-full border-b bg-olive-100 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
         {/* LEFT SIDE: LOGO */}
         <NavbarLeft />

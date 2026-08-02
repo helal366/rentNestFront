@@ -10,7 +10,7 @@ export const ADMIN_SIDEBAR_ITEMS: ISidebarItem[] = [
   },
   {
     label: "Rental Requests",
-    href: "/rental_requests",
+    href: "/rental_requests_admin",
     icon: ClipboardList, // ✅ list / requests
   },
   {
