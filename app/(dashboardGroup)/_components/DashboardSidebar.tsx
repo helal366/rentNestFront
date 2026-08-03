@@ -16,12 +16,6 @@ const DashboardSidebar = ({ user }: { user: UserResponse }) => {
       className="border-r group-data-[sidebar=sidebar]:bg-teal-200"
       variant="sidebar"
     >
-      {/* <SidebarHeader className="px-4 pt-4">
-        <span className="font-bold flex items-center gap-2">
-          <LayoutDashboard className="w-5 h-5" />
-          <span>DASHBOARD</span>
-        </span>
-      </SidebarHeader> */}
        <SidebarHeader className="flex h-16 items-center px-6 border-b border-teal-300/50">
         <div className="font-bold flex items-center gap-2 text-slate-800">
           <LayoutDashboard className="w-5 h-5 text-slate-700" />

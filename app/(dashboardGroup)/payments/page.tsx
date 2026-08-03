@@ -104,7 +104,7 @@ export default async function PaymentsPage() {
                         </div>
                       </TableCell>
                       <TableCell className="font-semibold">
-                        ৳{payment.amount.toLocaleString()}
+                        TK {payment.amount.toLocaleString()}
                       </TableCell>
                       <TableCell>
                         <Badge
