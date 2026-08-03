@@ -9,7 +9,7 @@ export const LANDLORD_SIDEBAR_ITEMS: ISidebarItem[] = [
   },
   {
     label: "Rental Requests",
-    href: "/rental_requests",
+    href: "/rental_landlord_tenant",
     icon: ClipboardList, // ✅ list / requests
   },
   {

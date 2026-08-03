@@ -150,7 +150,9 @@ export default async function RentalRequestsPage() {
                   variant="outline"
                   size="sm"
                 >
-                  <Link href={`/rental_requests/${item.id}`}>View Details</Link>
+                  <Link href={`/rental_landlord_tenant/${item.id}`}>
+                    View Details
+                  </Link>
                 </Button>
               </CardContent>
             </Card>
