@@ -12,7 +12,7 @@ const MobileDashboardMenu = ({
   onClick: () => void;
 }) => {
   const role = user?.data?.role;
-  const roleItems = role_sidebar_items()[role] || [];
+  const roleItems = role ? role_sidebar_items()[role] || [] : [];
   const commonItems = common_sidebar_items();
 
   return (

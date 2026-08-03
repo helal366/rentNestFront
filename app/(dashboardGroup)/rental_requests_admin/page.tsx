@@ -1,4 +1,5 @@
-import { Info, MapPin, Home, Star } from "lucide-react";
+export const dynamic = "force-dynamic";
+import { MapPin } from "lucide-react";
 import { getRentalRequests } from "../_actions/getRentalRequests";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -16,11 +17,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from "@/components/ui/hover-card";
 import RentalRequestsTop from "../_components/rentalRequests/RentalRequestsTop";
 import { RentalDetailsModal } from "../_components/rentalRequests/RentalRequestsDetailsModal";
 

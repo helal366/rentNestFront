@@ -22,10 +22,6 @@ const initialState: RegisterActionState = {
 export default function RegisterForm() {
   const [state, formAction, isPending] = useActionState(registerAction, initialState);
   
-  console.log({ state });
-  console.log({ formAction });
-  console.log({ isPending });
-  
   useEffect(() => {
     if (!state || state.statusCode === 0) {
       return;

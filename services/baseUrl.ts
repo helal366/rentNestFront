@@ -1,0 +1,1 @@
+export const BACKEND_VERCEL_URL="http://localhost:5000"
