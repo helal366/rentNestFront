@@ -301,3 +301,68 @@ This document maps the frontend components to their respective backend API endpo
   * Hands off the verified categories collection directly into the visual layout wrapper: `AllCategoriesAdmin`
 
 ---
+
+
+# Rental Requests & Landlord Operations Management
+
+## 1. Rental Requests Overview Dashboard
+
+### `RentalRequestsPage` (`app/(dashboardGroup)/rental_requests/page.tsx`)
+
+* **Backend Endpoint:** `GET ${process.env.BACKEND_VERCEL_URL}/api/rentals`
+* **Description:**
+  * Displays a comprehensive overview listing of all incoming or outgoing property leasing applications relative to the authenticated user's session profile.
+  * Utilizes explicit server compilation pipelines embedding Next.js dynamic routing mechanics (`revalidate: 0`) to enforce strict freshness guarantees across multi-tenant states.
+  * Asynchronously hooks into the browser storage registry to extract the active `accessToken` value, injecting it dynamically as a `Cookie` string key header.
+* **Payload Mapping:**
+  * Consumes a relational data matrix mapped via backend Prisma filters (`findMany`) optimized for dual-persona queries (`tenantId` or `landlordId` criteria):
+    * **`rentalRequestProperty`**: Displays location geographical tags, total dimensions (`areaInSqFt`), structural feature matrices (`amenities`), and current lease availability states.
+    * **`landlord`**: Surfaces fundamental profile identifiers including full names and linked primary email records.
+* **Handles:**
+  * **Unauthorized States:** Catches cookie parsing failure states or missing credentials securely inside a structural `try/catch` safety net, shifting the UI down into an explicit localized sign-in redirection card.
+  * **Empty Query Sets:** Gracefully short-circuits to an alternate empty-state Shadcn visual card description text block when no matching historical items are found.
+* **Data Pipeline:**
+  * Collects the structural array payload map downstream to drive structural grid layouts populated directly via Tailwind CSS viewports.
+
+---
+
+## 2. Rental Request Details Page
+
+### `RentalRequestDetailPage` (`app/(dashboardGroup)/rental_requests/[id]/page.tsx`)
+
+* **Backend Endpoint:** `GET ${process.env.BACKEND_VERCEL_URL}/api/rentals/:id`
+* **Description:**
+  * Generates an isolated, comprehensive dashboard overview tracking state rules, ledger tables, and user demographic data matching a unique parameter ID variable string.
+  * Enforces robust server-side permission walls where request ownership profiles are validated at the API tier against individual tenant and landlord accounts.
+* **Payload Mapping:**
+  * Hydrates a multi-dimensional relational response object schema (`findUniqueOrThrow`) structured inside a single parent wrapper key (`data.rentalRequest`):
+    * **`rentalRequestProperty`**: Aggregates month-to-month dynamic pricing data (`rentPrice`), category definitions, dimensions, and explicit property features.
+    * **`tenant` / `landlord`**: Maps complete communication profiles including physical addresses, telephone listings, and restrictive system account states (`userStatus`).
+    * **`payments`**: Streams an embedded linear list array detailing localized financial ledgers complete with provider metrics (`SSLCOMMERZ`), gateway methodologies, and absolute transactional timestamps.
+* **Handles:**
+  * **Missing / Corrupted Records:** Triggers a standard core Next.js structural `notFound()` redirection cascade if the lookup fails or returns null variables.
+  * **State Lifecycle Integrity:** Passes parameters downstream into localized client control containers to track status mutations securely.
+* **Data Pipeline:**
+  * Unpacks and splits parent record fields across isolated structural visual fragments:
+    * `PropertyInsightsCard` — Manages the physical structural real estate parameters.
+    * `TransactionLedgerCard` — Hydrates financial accounting tables dynamically.
+    * `UserProfileCard` — Controls layout formatting for individual participant profiles.
+    * `LandlordActionPanel` — Mounts conditional interaction triggers for state modifications.
+
+---
+
+## 3. Landlord Status Modification Controller
+
+### `LandlordActionPanel` (`app/(dashboardGroup)/_components/rentalLandlordTenant/LandlordActionPanel.tsx`)
+
+* **Backend Endpoint:** `PATCH ${process.env.BACKEND_VERCEL_URL}/api/landlord/requests/:id`
+* **Description:**
+  * An interactive client-side management hub allowing landlords to step-mutate rental request states between strict lifecycle stages (`PENDING`, `APPROVED`, `REJECTED`).
+  * Triggers database transactions that execute cascade updates across competing user applications and flip parent property flags (`rentStatus` transitions).
+* **Payload Mapping:**
+  * Submits an outbound body payload containing:
+    * **`requestStatus`**: The uppercase targeted target state value enum (`PENDING` | `APPROVED` | `REJECTED`).
+* **Handles:**
+  * **Financial Lockouts:** UI safeguard components lock down mutation fields immediately if payment completion flags return positive (`isPaid: true`), mirroring backend error preventions against reverting finalized leases.
+  * **Network Lifecycle Pending States:** Introduces localized layout states (`loadingStatus`) to disable simultaneous mouse events and swap base icons out for active loading spinners (`Loader2`) during flight.
+  * **Optimistic Synchronizations:** Executes a hot global router instruction refresh (`router.refresh()`) instantly following successful execution loops to pull clean data layers without full-page reloads.

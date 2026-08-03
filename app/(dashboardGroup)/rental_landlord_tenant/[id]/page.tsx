@@ -15,6 +15,7 @@ import { getRentalRequestByIdAction } from "../../_actions/fetch_landlord_tenant
 import { PropertyInsightsCard } from "../../_components/rentalLandlordTenant/PropertyInsightsCard";
 import { TransactionLedgerCard } from "../../_components/rentalLandlordTenant/TransactionLedgerCard";
 import { UserProfileCard } from "../../_components/rentalLandlordTenant/UserProfileCard";
+import { LandlordActionPanel } from "../../_components/rentalLandlordTenant/LandlordActionPanel";
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -117,6 +118,12 @@ export default async function RentalRequestDetailPage({ params }: PageProps) {
           <PropertyInsightsCard property={request.rentalRequestProperty} />
           <TransactionLedgerCard payments={request.payments} />
         </div>
+
+        <LandlordActionPanel
+          requestId={request.id}
+          currentStatus={request.requestStatus}
+          isPaid={request.isPaid}
+        />
 
         {/* Right Column - User Overview Profiles */}
         <div className="space-y-6">
