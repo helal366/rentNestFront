@@ -231,5 +231,46 @@ This document maps the frontend components to their respective backend API endpo
 
 ---
 
+# User Management Components
+
+## Admin Users Directory Page
+
+### `AdminUsersPage` (`app/(dashboardGroup)/users/page.tsx`)
+
+* **Backend Endpoint:** `GET ${process.env.BACKEND_VERCEL_URL}/api/admin/users`
+
+* **Description:**
+  * Fetches the global list of system users and analytical metrics using `fetchAdminUsers()` (SSR).
+  * Passes cookies containing authorization credentials seamlessly from server-to-server.
+  * Returns structured administrative database payloads containing:
+    * **System Metadata (`meta`):** Global structural calculation parameters including total registered active system users count.
+    * **User Core Schemas (`users`):** Extended profiles with relational models like nested Tenant Reviews, Landlord Properties, Active Rental Enquiries, Category strings, and Approval logs.
+  * Handles:
+    * **Session Validation Failure:** Catches missing tokens safely to output `"Not logged in..."` warnings.
+    * **Database Exceptions:** Isolates error instances to print accurate runtime messages.
+  * Passes data payload parameters straight down into the `UsersDashboardClient` layout.
+
+---
 
 
+# Admin Dashboard Components
+
+## Rental Requests Administration
+
+### `RentalRequestsAdminPage` (`app/(dashboardGroup)/admin_dashboard/rental_requests_admin/page.tsx`)
+
+* **Backend Endpoint:** `GET ${process.env.BACKEND_VERCEL_URL}/api/admin/rentals`
+
+* **Description:**
+  * Fetches all registered system transaction requests using `getRentalRequests()` (SSR)
+  * Implements `export const dynamic = "force-dynamic"` to ensure secure, fresh server-side evaluation per request.
+  * Structural response model aggregates deeply nested system telemetry data, including:
+    * **Property Specifications:** Sizing dimensions (`areaInSqFt`), spatial configurations, and geolocation coordinates (`JATRABARI`).
+    * **Ecosystem Taxonomy:** Assigned categories mapped through parent relational data queries.
+    * **Ecosystem Counterparties:** Contact data for landowners and approved tenants (`name`, `email`, `contactNo`, `address`).
+    * **Community Metrics:** Direct embedding of client satisfaction logs and quantitative feedback reviews (`rating`, `content`).
+  
+* **State & Edge-Case Handling:**
+  * **Authorization Middleware:** Extracted user tokens (`accessToken`) verified against administrative roles (`Role.ADMIN`).
+  * **Empty Payload Tracking:** Gracefully displays *"No system rental requests found"* state when the retrieved data dataset is completely empty (`0 records`).
+  * **Dynamic Detail Modal:** Structural properties are parsed directly down to the client-facing `RentalDetailsModal` component to map granular layout specifics via isolated dialog popups.
