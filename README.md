@@ -90,18 +90,29 @@ pnpm add jsonwebtoken && pnpm add -D @types/jsonwebtoken
 * into components folder, create a shared folder. into shared folder, create Navbar.tsx
 * into app folder, create (authGroup).into it, login and register route folder.
 
-
+* AT TERMINAL
 * if need to clean .next
+```
+taskkill //f //im node.exe
+```
+
+* cache clean
 ```
 rm -rf .next
 pnpm dev
 ```
 
-* cache clean
+* AT CMD
 ```
-taskkill //f //im node.exe
+taskkill /f /im node.exe
+rmdir /s /q .next
+```
+* using bash
+```
+pnpm dev
+```
 
-```
+
 
 
 * When you write: feat: add role-based dashboard layout, you are telling your team:"I have added a brand new piece of functionality to the app (the dashboard layout)." 
