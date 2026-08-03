@@ -1,7 +1,7 @@
 import React from 'react'
 import { CategoryWithProperties } from '../../_types/category_types'
 import Link from 'next/link'
-import { DollarSign, Home, MapPin, Maximize,User, Mail, Phone, Wifi } from 'lucide-react'
+import { Home, MapPin, Maximize,User, Mail, Phone, Wifi } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
 interface AllCategoriesAdminProps{

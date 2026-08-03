@@ -274,3 +274,30 @@ This document maps the frontend components to their respective backend API endpo
   * **Authorization Middleware:** Extracted user tokens (`accessToken`) verified against administrative roles (`Role.ADMIN`).
   * **Empty Payload Tracking:** Gracefully displays *"No system rental requests found"* state when the retrieved data dataset is completely empty (`0 records`).
   * **Dynamic Detail Modal:** Structural properties are parsed directly down to the client-facing `RentalDetailsModal` component to map granular layout specifics via isolated dialog popups.
+
+# Category Management Components
+
+## Categories Overview Page
+
+### `CategoriesPage` (`app/categories/page.tsx`)
+
+* **Backend Endpoint:** `GET ${process.env.BACKEND_VERCEL_URL}/api/categories`
+
+* **Description:**
+  * Fetches the complete real estate category tree and listing details using Server-Side Rendering (SSR).
+  * Enforces `cache: "no-store"` to prevent stale configurations and guarantee real-time property status updates.
+  * Securely forwards authentication by reading the `accessToken` directly from client cookies and appending it to the outgoing fetch headers.
+
+* **Payload Mapping:**
+  * Accesses an atomic dataset generated via a backend Prisma transaction containing:
+    * **`meta`**: Total count of active, non-soft-deleted categories.
+    * **`categories`**: Dynamic list of category definitions, each embedding its related `properties` data and parent `landlord` account parameters.
+
+* **Handles:**
+  * **Missing Credentials:** Intercepts missing or expired session cookies gracefully by bypassing the server fetch and passing an empty baseline payload context to prevent client UI crashes.
+  * **Missing Configuration:** Throws a structural runtime exception if the core `BACKEND_VERCEL_URL` environment variables are absent.
+
+* **Data Pipeline:**
+  * Hands off the verified categories collection directly into the visual layout wrapper: `AllCategoriesAdmin`
+
+---
