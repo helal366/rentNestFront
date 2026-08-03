@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { LogIn } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -11,7 +12,38 @@ import {
 import { getAllRentalRequestsAction } from "../_actions/fetch_landlord_tenant_rentals";
 
 export default async function RentalRequestsPage() {
-  const requests = await getAllRentalRequestsAction();
+  let requests = [];
+
+  try {
+    // Automatically extracts the accessToken cookie from request contexts
+    requests = await getAllRentalRequestsAction();
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error.message);
+    } else {
+      console.error("Authentication or fetching failure");
+    }
+
+    return (
+      <div className="container mx-auto p-6 max-w-md mt-12">
+        <Card className="text-center p-6 border-destructive/20 shadow-sm">
+          <CardHeader>
+            <CardTitle className="text-destructive">Session Expired</CardTitle>
+            <CardDescription>
+              Please sign in again to view your dashboard requests.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Button asChild className="w-full gap-2">
+              <Link href="/login">
+                <LogIn className="h-4 w-4" /> Go to Login
+              </Link>
+            </Button>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
 
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -40,10 +72,7 @@ export default async function RentalRequestsPage() {
       ) : (
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {requests.map((item) => (
-            <Card
-              key={item.id}
-              className="flex flex-col justify-between shadow-sm"
-            >
+            <Card key={item.id} className="flex flex-col justify-between">
               <CardHeader className="pb-3">
                 <div className="flex items-start justify-between gap-2">
                   <div className="space-y-1">

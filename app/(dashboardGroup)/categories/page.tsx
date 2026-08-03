@@ -5,7 +5,7 @@ import AllCategoriesAdmin from './../_components/categories/AllCategoriesAdmin';
 
 async function getCategoriesData(): Promise<CategoriesApiResponse> {
   const baseUrl = process.env.BACKEND_VERCEL_URL || "http://localhost:5000";
-  console.log({baseUrl})
+  // console.log({baseUrl})
   if(!baseUrl){
     throw new Error("Base url not found")
   }

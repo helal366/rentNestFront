@@ -1,8 +1,15 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, Calendar } from "lucide-react";
+import { ArrowLeft, Calendar, LogIn } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 import { getRentalRequestByIdAction } from "../../_actions/fetch_landlord_tenant_rentals";
 import { PropertyInsightsCard } from "../../_components/rentalLandlordTenant/PropertyInsightsCard";
@@ -15,7 +22,40 @@ interface PageProps {
 
 export default async function RentalRequestDetailPage({ params }: PageProps) {
   const { id } = await params;
-  const data = await getRentalRequestByIdAction(id);
+  let data = null;
+
+  try {
+    // Automatically pulls token via cookies internally within the action file
+    data = await getRentalRequestByIdAction(id);
+  } catch (error) {
+    if(error instanceof Error){
+      console.error(error.message);
+    }else{
+      console.error("Authentication or fetching failure");
+    }
+
+    // Catch explicit cookie failure and prompt login sequence alternative
+    return (
+      <div className="container mx-auto p-6 max-w-md mt-12">
+        <Card className="text-center p-6 border-destructive/20 shadow-sm">
+          <CardHeader>
+            <CardTitle className="text-destructive">Session Expired</CardTitle>
+            <CardDescription>
+              Please sign in again to access secure landlord dashboard
+              pipelines.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Button asChild className="w-full gap-2">
+              <Link href="/login">
+                <LogIn className="h-4 w-4" /> Go to Login
+              </Link>
+            </Button>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
 
   if (!data || !data.rentalRequest) {
     notFound();
