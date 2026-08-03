@@ -25,7 +25,7 @@ export async function fetchProperties(
 ): Promise<GetPropertiesResponse | null> {
   console.log({ queryString });
   const baseUrl = process.env.BACKEND_VERCEL_URL?.replace(/\/$/, "");
-  console.log(baseUrl);
+  // console.log(baseUrl);
   if (!baseUrl) {
     console.error(
       "CRITICAL: BACKEND_VERCEL_URL environment variable is missing.",
