@@ -15,10 +15,10 @@ import {
 } from "../_types/propertyTypes";
 import PropertyFilters from "../_components/properties/PropertyFilters";
 import { Suspense } from "react";
-import Loading from "../loading";
 import PropertiesList from "../_components/properties/PropertiesList";
 import { frontendPropertySearchSchema } from "@/zod_schemas/properties_schema";
 import z from "zod";
+import Loading from "./loading";
 
 export async function fetchProperties(
   queryString: string,

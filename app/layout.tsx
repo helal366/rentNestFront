@@ -3,8 +3,6 @@ import { Hind_Siliguri, Roboto } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { Suspense } from "react";
-import Loading from "./loading";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -33,7 +31,7 @@ export default function RootLayout({
     <html lang="bn" className={`${roboto.variable} ${banglaFont.variable}`}>
       <body className="min-h-full flex flex-col bg-olive-300" suppressHydrationWarning>
         <TooltipProvider>
-         <Suspense fallback={<Loading/>}>{children}</Suspense>
+         {children}
         </TooltipProvider>
          <Toaster richColors closeButton />
       </body>
