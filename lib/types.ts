@@ -104,6 +104,7 @@ export interface RegisterActionState {
 }
 
 export type ISidebarItem = {
+    id: string,
     label: string,
     href: string,
     icon: ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>

@@ -3,6 +3,10 @@ import { LogIn } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { getAllRentalRequestsAction } from "../_actions/fetch_landlord_tenant_rentals";
+import { TenantPaymentPanel } from "../_components/rentalLandlordTenant/TenantPaymentPanel";
+import { LandlordActionPanel } from "../_components/rentalLandlordTenant/LandlordActionPanel";
+import { getMe } from "@/services/getMe";
+import { UserResponse } from "../_types/my_profile_types";
 import {
   Card,
   CardContent,
@@ -11,17 +15,17 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { RentalRequestAllItem } from "../_types/rental_landlord_tenant_types";
-import { UserResponse } from "../_types/my_profile_types";
-import { getMe } from "@/services/getMe";
 export const dynamic = "force-dynamic";
-export default async function RentalRequestsPage() {
+export default async function PayRentals() {
   let requests = [] as RentalRequestAllItem[];
   let user: UserResponse;
 
   try {
     // Automatically extracts the accessToken cookie from request contexts
     requests = await getAllRentalRequestsAction();
+    console.log({requests})
     user=await getMe();
+    // console.log("user from rental request landlord tenant", user)
   } catch (error) {
     if (error instanceof Error) {
       console.error(error.message);
@@ -60,8 +64,11 @@ export default async function RentalRequestsPage() {
         return "bg-amber-500 text-white hover:bg-amber-500";
     }
   };
-
-  const userRole = user?.data?.role
+  const userRole = user?.data?.role;
+  const requestsPayable: RentalRequestAllItem[] = requests.filter(
+    (req) => req.isPaid === false && req.requestStatus === "APPROVED",
+  );
+  // console.log(userRole)
   return (
     <div className="container mx-auto p-6 max-w-6xl">
       <div className="flex flex-col gap-2 mb-6">
@@ -71,13 +78,13 @@ export default async function RentalRequestsPage() {
         </p>
       </div>
 
-      {requests.length === 0 ? (
+      {requestsPayable.length === 0 ? (
         <Card className="p-12 text-center">
-          <CardDescription>No rental requests found.</CardDescription>
+          <CardDescription>No payable rental requests found.</CardDescription>
         </Card>
       ) : (
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {requests.map((item) => (
+          {requestsPayable.map((item) => (
             <Card key={item.id} className="flex flex-col justify-between">
               <CardHeader className="pb-3">
                 <div className="flex items-start justify-between gap-2">
@@ -151,27 +158,30 @@ export default async function RentalRequestsPage() {
                 </div>
 
                 <div className=" pb-6 pt-2 space-y-3 border-t bg-secondary/10 mt-4 rounded-b-xl">
+                  {userRole === "TENANT" && (
+                    <TenantPaymentPanel
+                      requestId={item.id}
+                      requestStatus={item.requestStatus}
+                      isPaid={item.isPaid}
+                    />
+                  )}
+
+                  {userRole === "LANDLORD" && (
+                    <LandlordActionPanel
+                      requestId={item.id}
+                      currentStatus={item.requestStatus}
+                      isPaid={item.isPaid}
+                    />
+                  )}
+
                   <Button
                     asChild
-                    className="w-full mt-2 bg-green-200 text-black hover:bg-olive-300"
+                    className="w-full mt-2"
+                    variant="outline"
                     size="sm"
                   >
-                    <Link href={`/rental_landlord_tenant/${item.id}`}>
-                      View Details
-                    </Link>
+                    <Link href={`/pay_rentals/${item.id}`}>View Details</Link>
                   </Button>
-                  {userRole === "LANDLORD" &&
-                    item.requestStatus === "PENDING" && (
-                      <Button
-                        asChild
-                        className="w-full mt-2 bg-olive-200 text-black hover:bg-olive-300"
-                        size="sm"
-                      >
-                        <Link href={`/rental_landlord_tenant/${item.id}`}>
-                          Approve Now
-                        </Link>
-                      </Button>
-                    )}
                 </div>
               </CardContent>
             </Card>

@@ -18,6 +18,7 @@ export const role_sidebar_items = (): SidebarItemsByRole => {
 export const common_sidebar_items = () =>{
     return [
       {
+        id: "my_profile_common",
         label: "My Profile",
         href: "/my_profile",
         icon: User, // ✅ personal profile

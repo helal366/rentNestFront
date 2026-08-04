@@ -39,13 +39,13 @@ export interface PaymentRecordAll {
   tenantId: string;
   landlordId: string;
   amount: number;
-  paymentStatus: "VALID" | "FAILED" | "PENDING" | string;
+  paymentStatus: string;
   sslSessionId: string;
   sslValidationId: string | null;
   sslRiskTitle: string | null;
   sslCardType: string | null;
-  method: "CARD" | string;
-  provider: "SSLCOMMERZ" | string;
+  method:  string;
+  provider: string;
   paidAt: string;
   rentalRequest: PaymentListRentalRequest;
   tenant: PaymentUserSummary;

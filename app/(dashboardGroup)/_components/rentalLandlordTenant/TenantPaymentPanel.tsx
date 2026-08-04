@@ -51,7 +51,7 @@ export function TenantPaymentPanel({
     <Card
       className={`border-l-4 ${isPaid ? "border-l-green-500 bg-green-50/5" : "border-l-blue-500 bg-blue-50/5"}`}
     >
-      {/* <CardHeader className="pb-2">
+      <CardHeader className="pb-2">
         <CardTitle className="text-sm font-semibold tracking-tight flex items-center gap-2">
           <CreditCard className="h-4 w-4 text-primary" />
           Lease Settlement Hub
@@ -61,7 +61,7 @@ export function TenantPaymentPanel({
             ? "Your financial lease terms are settled successfully."
             : "Your rental application is approved! Secure this property instantly by processing the first month's payment."}
         </CardDescription>
-      </CardHeader> */}
+      </CardHeader>
       <CardContent className="pt-2">
         {isPaid ? (
           <div className="flex items-center gap-2 text-xs font-semibold text-green-700 bg-green-50 border border-green-200 p-2.5 rounded-md">
