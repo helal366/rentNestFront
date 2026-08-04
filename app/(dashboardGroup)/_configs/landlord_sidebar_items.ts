@@ -1,5 +1,5 @@
 import { ISidebarItem } from "@/lib/types";
-import { Building, ClipboardList, CreditCard, Tags } from "lucide-react";
+import { Building, Building2, ClipboardList, CreditCard, Tags } from "lucide-react";
 
 export const LANDLORD_SIDEBAR_ITEMS: ISidebarItem[] = [
   {
@@ -7,6 +7,12 @@ export const LANDLORD_SIDEBAR_ITEMS: ISidebarItem[] = [
     label: "Create Property",
     href: "/landlord_dashboard",
     icon: Building, // ✅ group of people
+  },
+  {
+    id:"my_properties_landlord",
+    label: "My Properties",
+    href: "/landlord_dashboard",
+    icon: Building2, // ✅ group of people
   },
   {
     id: "my_properties_landlord",
