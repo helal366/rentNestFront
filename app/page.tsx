@@ -6,7 +6,7 @@ export default async function Home() {
   return (
     <section>
       <Navbar user={profile}/>
-      <p>Home page</p>
+      <Home/>
     </section>
   );
 }
