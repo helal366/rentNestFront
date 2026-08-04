@@ -91,7 +91,7 @@ export function PropertyCard({ property }: PropertyCardProps) {
           <Button
             asChild
             size="sm"
-            className="bg-[#2D3627] text-white hover:bg-black text-xs font-bold shrink-0 cursor-pointer shadow-none"
+            className="bg-green-700 text-white hover:bg-green-800 text-xs font-bold shrink-0 cursor-pointer shadow-none"
           >
             <Link
               href={`/properties/${property.id}`}

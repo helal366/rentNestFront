@@ -11,7 +11,7 @@ export function HeroLeftContent() {
       <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-olive-200/50 border border-olive-300">
         <Badge
           variant="default"
-          className="bg-green-600 text-white text-[10px] px-2 py-0.5 font-bold uppercase tracking-wider hover:bg-green-700"
+          className="bg-green-700 text-white text-[10px] px-2 py-0.5 font-bold uppercase tracking-wider hover:bg-green-700"
         >
           New Engine
         </Badge>
