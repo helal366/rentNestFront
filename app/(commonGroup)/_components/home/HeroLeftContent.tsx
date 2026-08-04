@@ -6,58 +6,60 @@ import { HeroSearchForm } from "./HeroSearchForm";
 
 export function HeroLeftContent() {
   return (
-    <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
+    <div className="lg:col-span-7 space-y-6 text-center lg:text-left bg-olive-300 p-6 rounded-2xl border border-neutral-100 shadow-sm">
       {/* Informative Status Badge */}
-      <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#3E4A36]/10 border border-[#3E4A36]/20">
+      <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-olive-200/50 border border-olive-300">
         <Badge
           variant="default"
-          className="bg-[#3E4A36] text-white text-[10px] px-2 py-0.5 font-bold uppercase tracking-wider"
+          className="bg-green-600 text-white text-[10px] px-2 py-0.5 font-bold uppercase tracking-wider hover:bg-green-700"
         >
           New Engine
         </Badge>
-        <span className="text-xs font-semibold text-[#3E4A36] tracking-tight">
+        <span className="text-xs font-semibold text-green-700 tracking-tight">
           Secure property matchmaking active
         </span>
       </div>
 
-      {/* Main Copywriting Typography */}
-      <div className="space-y-4">
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-black leading-[1.1]">
+      {/* Main Copywriting Typography - Capped at 2xl/3xl */}
+      <div className="space-y-3">
+        <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-neutral-900 leading-snug">
           Find Your Perfect Nest, <br className="hidden sm:inline" />
-          Managed with <span className="text-[#3E4A36]">Precision</span>.
+          Managed with <span className="text-green-700">Precision</span>.
         </h1>
-        <p className="text-muted-foreground text-base max-w-xl mx-auto lg:mx-0 leading-relaxed">
+        <p className="text-muted-foreground text-sm max-w-xl mx-auto lg:mx-0 leading-relaxed">
           RentNest connects verified landlords with trusted tenants. Zero hidden
           fees. Built-in rental requests. Complete transaction clarity.
         </p>
       </div>
 
       {/* Integrated Action Search bar */}
-      <HeroSearchForm />
+      <div className="bg-olive-200 p-2 rounded-xl border border-olive-200">
+        <HeroSearchForm />
+      </div>
 
       {/* Corporate Value Metrics Row */}
-      <div className="grid grid-cols-3 gap-4 max-w-md mx-auto lg:mx-0 pt-4 border-t border-neutral-100">
-        <div>
-          <p className="text-2xl font-extrabold text-black tracking-tight">
+      <div className="grid grid-cols-3 gap-4 max-w-md mx-auto lg:mx-0 pt-4 border-t border-olive-300">
+        <div className="bg-olive-200/40 p-2 rounded-lg text-center border border-olive-200">
+          <p className="text-xl font-extrabold text-neutral-900 tracking-tight">
             2K+
           </p>
-          <p className="text-[10px] text-muted-foreground font-semibold uppercase tracking-wider">
+          <p className="text-[10px] text-green-700 font-bold uppercase tracking-wider">
             Verified Nests
           </p>
         </div>
-        <div>
-          <p className="text-2xl font-extrabold text-[#3E4A36] tracking-tight">
+        <div className="bg-olive-200 p-2 rounded-lg text-center border border-olive-300">
+          <p className="text-xl font-extrabold text-green-700 tracking-tight">
             98%
           </p>
-          <p className="text-[10px] text-muted-foreground font-semibold uppercase tracking-wider">
+          <p className="text-[10px] text-neutral-900 font-bold uppercase tracking-wider">
             Match Success
           </p>
         </div>
-        <div>
-          <p className="text-2xl font-extrabold text-black tracking-tight">
+        <div className="bg-olive-200/40 p-2 rounded-lg text-center border border-olive-200">
+          <p className="text-xl font-extrabold text-neutral-900 tracking-tight">
             0%
           </p>
-          <p className="text-[10px] text-muted-foreground font-semibold uppercase tracking-wider">
+          <p className="text-[10px] text-green-600 font-bold uppercase tracking-wider">
             Broker Fees
           </p>
         </div>
