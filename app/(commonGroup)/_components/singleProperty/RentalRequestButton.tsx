@@ -73,7 +73,7 @@ export function RentalRequestButton({
   };
    if (!isAvailable) {
      return (
-       <Button className="w-full" size="lg" disabled variant="secondary">
+       <Button className="w-full" size="lg" disabled variant="destructive">
          Unavailable for Rent
        </Button>
      );

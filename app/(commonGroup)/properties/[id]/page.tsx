@@ -48,7 +48,7 @@ export default async function PropertyDetailsPage({
         <div className="lg:col-span-1">
           <Card className="sticky top-6">
             <CardHeader>
-              <CardTitle className="text-xl">Submit Rental Request</CardTitle>
+              <CardTitle className="text-xl text-green-700 font-semibold">Submit Rental Request</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="flex justify-between border-b pb-2 text-sm">
