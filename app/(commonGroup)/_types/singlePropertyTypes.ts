@@ -14,7 +14,9 @@ export interface UserMinimal {
   address: string;
   userStatus: UserStatus;
 }
-
+export interface LandlordMinimal extends UserMinimal{
+  id:string
+}
 export interface ReviewItem {
   content: string;
   rating: number;
@@ -49,7 +51,7 @@ export interface PropertyDetails {
   };
   propertyRentRequests: RentRequestItem[];
   approvedTenant: UserMinimal | null;
-  landlord: UserMinimal;
+  landlord: LandlordMinimal;
   propertyReviews: ReviewItem[];
 }
 

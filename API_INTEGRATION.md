@@ -283,6 +283,22 @@ This document maps the frontend components to their respective backend API endpo
     };
   } | null
   ```
+
+### `createRentalRequestAction` (Server Action)
+
+- **Backend Endpoint:** `POST ${process.env.BACKEND_VERCEL_URL}/api/rental-requests`
+- **Data Payload Structure:** Direct injection of secure parameter keys derived from the backend data layer model:
+  ```json
+  {
+    "propertyId": "string (UUID)",
+    "landlordId": "string (UUID)"
+  }
+  ```
+- **Description:**
+  - Securely passes data payload inputs along with user session tracking `accessToken` cookies directly over to your Express backend framework.
+  - Revalidates the page cache using Next.js `revalidatePath("/properties/:id")` upon a successful mutation loop response to refresh structural components immediately.
+
+
 # My Profile Components
 
 ## Profile Page
