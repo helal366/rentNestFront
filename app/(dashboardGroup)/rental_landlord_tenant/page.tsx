@@ -10,13 +10,20 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { getAllRentalRequestsAction } from "../_actions/fetch_landlord_tenant_rentals";
+import { TenantPaymentPanel } from "../_components/rentalLandlordTenant/TenantPaymentPanel";
+import { LandlordActionPanel } from "../_components/rentalLandlordTenant/LandlordActionPanel";
+import { getMe } from "@/services/getMe";
+import { UserResponse } from "../_types/my_profile_types";
 
 export default async function RentalRequestsPage() {
   let requests = [];
+  let user: UserResponse;
 
   try {
     // Automatically extracts the accessToken cookie from request contexts
     requests = await getAllRentalRequestsAction();
+    user=await getMe();
+    console.log("user from rental request landlord tenant", user)
   } catch (error) {
     if (error instanceof Error) {
       console.error(error.message);
@@ -55,7 +62,8 @@ export default async function RentalRequestsPage() {
         return "bg-amber-500 text-white hover:bg-amber-500";
     }
   };
-
+  const userRole = user?.data?.role;
+  // console.log(userRole)
   return (
     <div className="container mx-auto p-6 max-w-6xl">
       <div className="flex flex-col gap-2 mb-6">
@@ -144,16 +152,34 @@ export default async function RentalRequestsPage() {
                   )}
                 </div>
 
-                <Button
-                  asChild
-                  className="w-full mt-2"
-                  variant="outline"
-                  size="sm"
-                >
-                  <Link href={`/rental_landlord_tenant/${item.id}`}>
-                    View Details
-                  </Link>
-                </Button>
+                <div className=" pb-6 pt-2 space-y-3 border-t bg-secondary/10 mt-4 rounded-b-xl">
+                  {userRole === "TENANT" && (
+                    <TenantPaymentPanel
+                      requestId={item.id}
+                      requestStatus={item.requestStatus}
+                      isPaid={item.isPaid}
+                    />
+                  )}
+
+                  {userRole === "LANDLORD" && (
+                    <LandlordActionPanel
+                      requestId={item.id}
+                      currentStatus={item.requestStatus}
+                      isPaid={item.isPaid}
+                    />
+                  )}
+
+                  <Button
+                    asChild
+                    className="w-full mt-2"
+                    variant="outline"
+                    size="sm"
+                  >
+                    <Link href={`/rental_landlord_tenant/${item.id}`}>
+                      View Details
+                    </Link>
+                  </Button>
+                </div>
               </CardContent>
             </Card>
           ))}

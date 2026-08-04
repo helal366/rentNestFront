@@ -2,6 +2,7 @@
 
 import { cookies } from "next/headers";
 import {
+  PaymentGatewayResponse,
   RentalRequestAllItem,
   SingleRentalRequestResponse,
 } from "../_types/rental_landlord_tenant_types";
@@ -111,3 +112,46 @@ export async function updateRentalRequestStatusAction(
   }
 }
 
+
+// PAYMENT FOR TENANT AFTER LANDLORD APPROVAL
+/**
+ * Initiates an SSLCommerz payment gateway session for a given rental request
+ * Accessible exclusively by the authenticated TENANT
+ */
+export async function createPaymentGatewayAction(
+  rentalRequestId: string
+): Promise<{ success: boolean; data?: PaymentGatewayResponse; message: string }> {
+  try {
+    const baseUrl = process.env.BACKEND_VERCEL_URL?.replace(/\/$/, "");
+    const headers = await authHeader();
+
+    const res = await fetch(`${baseUrl}/api/payments/create`, {
+      method: "POST",
+      headers,
+      body: JSON.stringify({ rentalRequestId }),
+      next: { revalidate: 0 },
+    });
+
+    const result = await res.json();
+
+    if (!res.ok) {
+      throw new Error(result.message || "Failed to generate checkout link.");
+    }
+
+    return { 
+      success: true, 
+      data: result.data, 
+      message: result.message || "Gateway initialized." 
+    };
+  } catch (error) {
+     if (error instanceof Error) {
+       console.error(error.message);
+     } else {
+       console.error("Error in createPaymentGatewayAction.");
+     }
+    return {
+      success: false,
+      message: `${error instanceof Error ? error.message : "An unexpected error occurred during checkout setup."}`,
+    };
+  }
+}

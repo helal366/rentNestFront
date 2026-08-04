@@ -91,3 +91,9 @@ export interface RentalRequestSingleData {
 export interface SingleRentalRequestResponse {
   rentalRequest: RentalRequestSingleData;
 }
+
+export interface PaymentGatewayResponse {
+  paymentUrl: string;
+  transactionId: string;
+  sslSessionId: string;
+}

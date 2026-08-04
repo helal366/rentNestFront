@@ -75,7 +75,7 @@ export function LandlordActionPanel({
       </CardHeader>
       <CardContent className="flex flex-col gap-2">
         {currentStatus === "PENDING" && (
-          <div className="grid grid-cols-2 gap-2">
+          <div className="grid grid-cols-1 xl:grid-cols-2 gap-2">
             <Button
               size="sm"
               className="bg-green-600 hover:bg-green-700 text-white gap-1.5 text-xs h-9"

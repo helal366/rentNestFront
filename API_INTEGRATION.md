@@ -366,3 +366,22 @@ This document maps the frontend components to their respective backend API endpo
   * **Financial Lockouts:** UI safeguard components lock down mutation fields immediately if payment completion flags return positive (`isPaid: true`), mirroring backend error preventions against reverting finalized leases.
   * **Network Lifecycle Pending States:** Introduces localized layout states (`loadingStatus`) to disable simultaneous mouse events and swap base icons out for active loading spinners (`Loader2`) during flight.
   * **Optimistic Synchronizations:** Executes a hot global router instruction refresh (`router.refresh()`) instantly following successful execution loops to pull clean data layers without full-page reloads.
+
+
+## 4. Tenant Payment Gateway Initialization
+
+### `TenantPaymentPanel` (`app/(dashboardGroup)/_components/rentalLandlordTenant/TenantPaymentPanel.tsx`)
+
+* **Backend Endpoint:** `POST ${process.env.BACKEND_VERCEL_URL}/api/payments/create`
+* **Description:**
+  * Handles the secure checkout tunnel initialization via SSLCommerz for verified applications.
+  * Dynamically queries structural relationships, tracking critical entity dependencies (`value_a: rentalRequestId`, `value_b: tenantId`, `value_c: landlordId`) securely across automated external bank verification scripts.
+* **Payload Mapping:**
+  * Inbound Body JSON properties require:
+    * **`rentalRequestId`**: String hash linking back to target properties.
+  * Expected API Success Returns:
+    * **`paymentUrl`**: Encrypted absolute gateway session URL enabling immediate window client redirections (`window.location.replace`).
+    * **`transactionId`**: System-generated identifier string tracking financial records.
+* **State Safeguard Mechanisms:**
+  * **Status Enforcements:** Client container components remain entirely hidden from viewports unless `requestStatus === "APPROVED"`.
+  * **Immutable System States:** Once completed (`isPaid: true`), the backend application layer flags are locked down entirely. This blocks landlords from rolling back properties to pending states or re-assigning availability parameters to competing applicants.

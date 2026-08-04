@@ -16,6 +16,7 @@ import { PropertyInsightsCard } from "../../_components/rentalLandlordTenant/Pro
 import { TransactionLedgerCard } from "../../_components/rentalLandlordTenant/TransactionLedgerCard";
 import { UserProfileCard } from "../../_components/rentalLandlordTenant/UserProfileCard";
 import { LandlordActionPanel } from "../../_components/rentalLandlordTenant/LandlordActionPanel";
+import { TenantPaymentPanel } from "../../_components/rentalLandlordTenant/TenantPaymentPanel";
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -78,7 +79,7 @@ export default async function RentalRequestDetailPage({ params }: PageProps) {
   return (
     <div className="container mx-auto p-6 max-w-5xl space-y-6">
       <Button asChild variant="ghost" size="sm" className="gap-2">
-        <Link href="/rental_requests">
+        <Link href="/rental_landlord_tenant">
           <ArrowLeft className="h-4 w-4" /> Back to List
         </Link>
       </Button>
@@ -112,21 +113,11 @@ export default async function RentalRequestDetailPage({ params }: PageProps) {
         </div>
       </div>
 
-      <div className="grid gap-6 md:grid-cols-3">
+      <div className="grid gap-6 lg:grid-cols-3">
         {/* Left/Middle Column - Property Details & Payment History */}
-        <div className="md:col-span-2 space-y-6">
+        <div className="lg:col-span-2 space-y-6">
           <PropertyInsightsCard property={request.rentalRequestProperty} />
           <TransactionLedgerCard payments={request.payments} />
-        </div>
-
-        <LandlordActionPanel
-          requestId={request.id}
-          currentStatus={request.requestStatus}
-          isPaid={request.isPaid}
-        />
-
-        {/* Right Column - User Overview Profiles */}
-        <div className="space-y-6">
           <UserProfileCard
             title="Tenant Target Profile"
             user={request.tenant}
@@ -134,6 +125,21 @@ export default async function RentalRequestDetailPage({ params }: PageProps) {
           <UserProfileCard
             title="Landlord Target Profile"
             user={request.landlord}
+          />
+        </div>
+
+        {/* Right Column - User Overview Profiles */}
+        <div className="space-y-6">
+          <TenantPaymentPanel
+            requestId={request.id}
+            requestStatus={request.requestStatus}
+            isPaid={request.isPaid}
+          />
+
+          <LandlordActionPanel
+            requestId={request.id}
+            currentStatus={request.requestStatus}
+            isPaid={request.isPaid}
           />
         </div>
       </div>
