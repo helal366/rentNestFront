@@ -23,7 +23,7 @@ import Loading from "./loading";
 export async function fetchProperties(
   queryString: string,
 ): Promise<GetPropertiesResponse | null> {
-  console.log({ queryString });
+  // console.log({ queryString });
   const baseUrl = process.env.BACKEND_VERCEL_URL?.replace(/\/$/, "");
   if (!baseUrl) {
     console.error(
