@@ -13,7 +13,6 @@ interface RentalRequestButtonProps {
 }
 
 export function RentalRequestButton({
-  propertyId,
   isLoggedIn,
   userRole,
   isAvailable,

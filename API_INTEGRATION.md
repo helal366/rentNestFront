@@ -176,36 +176,113 @@ This document maps the frontend components to their respective backend API endpo
 
     ## Property Details Page
 
-### `PropertyDetailPage` (`app/properties/[id]/page.tsx`)
+### `PropertyDetailsPage` (`app/properties/[id]/page.tsx`)
 
-* **Backend Endpoint:** `GET ${process.env.BACKEND_VERCEL_URL}/api/properties/:id` *(currently using mock data)*
-* **Route Param:**
+- **Backend Endpoints:** 
+  - `GET ${process.env.BACKEND_VERCEL_URL}/api/properties/:id` (Public details retrieval)
+  - `GET ${process.env.BACKEND_VERCEL_URL}/api/auth/me` (Internal authenticated user session check)
+- **Dynamic Route Params:**
+  - `id`: `string` (UUID matching a specific property record)
 
-  ```json
+- **Description:**
+  - Fetches individual property information along with authentication contexts concurrently using server-side fetching via `Promise.all`.
+  - Enforces route failure boundaries using Next.js `notFound()` if data validation loops fail or backend responses return invalid structures.
+  - Dynamically passes authorization status, authenticated user role scopes, and contextual datasets down into sub-nested UI elements.
+
+---
+
+### `ActiveRentalRequests` (`ActiveRentalRequests.tsx`)
+
+- **Backend Data Dependency:** Extracted from the `propertyRentRequests` embedded relation array.
+- **Access Rule Constraints:**
+  - **Unauthenticated Users:** Completely hidden from layout views (returns `null`).
+  - **Authenticated Users:** Visible to logged-in accounts holding either **TENANT**, **LANDLORD**, or **ADMIN** roles.
+
+- **Description:**
+  - Displays a responsive dashboard list detailing all currently active leasing queues submitted on this property asset.
+  - Uses color-coded Shadcn `Badge` visual indicators to map states for `requestStatus` (`PENDING`, `APPROVED`, `REJECTED`) and settlement status flags (`isPaid`).
+  - Shows critical applicant data sheets including full legal names, validation email addresses, and contact numbers.
+
+---
+
+### `RentalRequestButton` (`RentalRequestButton.tsx`)
+
+- **Interactive State Conditions:**
+  - **User Not Logged In:** Triggers a destructive Shadcn toast validation notice and shifts routes natively to `/login`.
+  - **User Logged In but Not a Tenant:** Blockades processing execution, rendering a validation error badge warning that actions require a **TENANT** profile scope.
+  - **Property Already Rented:** Renders an unclickable, disabled gray scale layout variant labeled "Unavailable for Rent".
+  - **User Authorized (Is Tenant):** Proceeds to interact with execution middleware layers to trigger future backend state manipulation requests.
+
+- **Description:**
+  - A client-side state handling button designed using Shadcn UI foundational layers.
+  - Keeps workflows performant by handling client navigation routines and security constraints locally before invoking structural backend connection pipelines.
+
+---
+
+### `fetchPropertyById` (Utility Function)
+
+- **Backend Endpoint:** `GET ${process.env.BACKEND_VERCEL_URL}/api/properties/:id`
+- **Description:**
+  - Core network retrieval module executing native server-side `fetch` pipelines.
+  - Utilizes standard `cache: "no-store"` header parameters to bypass browser request memory caching and guarantee real-time property updates.
+  - Gracefully handles structural processing bugs or dead server gateways by trapping failures inside `try/catch` wrappers and returning clean recovery states (`null`).
+- **Returns Type Structure:**
+
+  ```typescript
   {
-    "id": "string"
-  }
+    success: boolean;
+    statusCode: number;
+    message: string;
+    data: {
+      property: {
+        id: string;
+        propertyCategoryId: string;
+        rentStatus: RentStatus;
+        landlordId: string;
+        approvedTenantId: string | null;
+        rentPrice: number;
+        location: PropertyLocation;
+        areaInSqFt: number;
+        amenities: PropertyAmenity[];
+        isDeleted: boolean;
+        deletedAt: string | null;
+        createdAt: string;
+        updatedAt: string;
+        category: { name: string };
+        propertyRentRequests: Array<{
+          requestStatus: RentRequestStatus;
+          isPaid: boolean;
+          tenant: {
+            name: string;
+            email: string;
+            contactNo: string;
+            address: string;
+            userStatus: UserStatus;
+          };
+        }>;
+        approvedTenant: {
+          name: string;
+          email: string;
+          contactNo: string;
+          address: string;
+          userStatus: UserStatus;
+        } | null;
+        landlord: {
+          name: string;
+          email: string;
+          contactNo: string;
+          address: string;
+          userStatus: UserStatus;
+        };
+        propertyReviews: Array<{
+          content: string;
+          rating: number;
+          tenant: { name: string; email: string };
+        }>;
+      };
+    };
+  } | null
   ```
-* **Description:**
-
-  * Fetches a single property using dynamic route `id`
-  * Currently uses local mock data (`properties_demodata.json`)
-  * Finds property by matching `property.id === params.id`
-  * Handles:
-
-    * Invalid ID → `notFound()` (Next.js 404 page)
-  * Displays:
-
-    * Property category & rent status
-    * Location, area, rent price
-    * Amenities list
-    * Rental request activity log
-    * Landlord details (name, email, contact)
-    * Approved tenant (if exists)
-  * Navigation:
-
-    * Back button → `/properties`
-
 # My Profile Components
 
 ## Profile Page
