@@ -86,18 +86,18 @@ function ConfirmationContent() {
           </div>
         </CardContent>
 
-        <CardFooter className="flex flex-col gap-2">
+        {/* <CardFooter className="flex flex-col gap-2">
           <Button className="w-full" onClick={() => router.push("/payments")}>
             View Payment History
           </Button>
           <Button
             variant="outline"
             className="w-full"
-            onClick={() => router.push("/landlord_dashboard")}
+            onClick={() => router.push("/tenant_dashboard")}
           >
             Go to Dashboard
           </Button>
-        </CardFooter>
+        </CardFooter> */}
       </Card>
     );
   }

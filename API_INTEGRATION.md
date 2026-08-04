@@ -385,3 +385,26 @@ This document maps the frontend components to their respective backend API endpo
 * **State Safeguard Mechanisms:**
   * **Status Enforcements:** Client container components remain entirely hidden from viewports unless `requestStatus === "APPROVED"`.
   * **Immutable System States:** Once completed (`isPaid: true`), the backend application layer flags are locked down entirely. This blocks landlords from rolling back properties to pending states or re-assigning availability parameters to competing applicants.
+
+## Payment Confirmation Page
+
+### `PaymentConfirmation` (`app/payment_confirmation/page.tsx`)
+
+* **Incoming Gateway Redirect Endpoint:** `POST /api/payments/confirm` (Handled by Express Backend)
+
+* **Description:**
+  * Displays dynamic transaction results after a user completes, cancels, or fails an SSLCommerz gateway session.
+  * Captures live gateway parameters via URL query strings forwarded by the backend controller.
+  * Wrapped in a Next.js `<Suspense>` boundary to safely handle client-side parameter parsing during build-time rendering.
+
+* **URL Parameter Mappings:**
+  * `status`: Defines the view configuration (`success` | `cancelled` | `failed`).
+  * `tranId`: The unique database transaction tracking string (`TXN-XXXXXXXX`).
+  * `amount`: The dynamic financial currency value processed (e.g., `6000 BDT`).
+  * `method`: The specific transaction platform used (e.g., `NAGAD-Nagad`, `BKASH-bKash`, `CARD`).
+  * `date`: ISO timestamp marking when the transaction payload hit the system database.
+
+* **Conditional Views Handled:**
+  * **Success:** Shows an animated confirmation state, breaks down specific transaction fields, and offers options to view payment history or return home.
+  * **Cancelled:** Displays an amber warning indicating the window was manually closed, confirming no funds were deducted, and adds a retry payment shortcut.
+  * **Failed:** Renders a red error alert mapping failure conditions (insufficient funds, invalid verification) and guides the user to retry with another card.

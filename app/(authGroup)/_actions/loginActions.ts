@@ -33,6 +33,10 @@ export async function loginAction(
   };
 }
 
+const cookieStore= await cookies();
+cookieStore.delete("accessToken");
+cookieStore.delete("refreshToken");
+
   try {
     const response = await fetch(`${process.env.BACKEND_VERCEL_URL}/api/auth/login`, {
       method: "POST",
@@ -53,7 +57,7 @@ export async function loginAction(
     }
 
     if(data.success){
-        const cookieStore = await cookies();
+        
         cookieStore.set("accessToken", data.data.accessToken, {
             httpOnly: true,
             maxAge: 60*60*24,
