@@ -23,7 +23,7 @@ export default async function PayRentals() {
   try {
     // Automatically extracts the accessToken cookie from request contexts
     requests = await getAllRentalRequestsAction();
-    console.log({requests})
+    // console.log({requests});
     user=await getMe();
     // console.log("user from rental request landlord tenant", user)
   } catch (error) {

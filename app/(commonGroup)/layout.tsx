@@ -1,6 +1,5 @@
 import Navbar from "@/components/shared/Navbar";
 import { getMe } from "@/services/getMe";
-import { Suspense } from "react";
 
 const CommonGroupLayout = async ({
   children,
