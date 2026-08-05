@@ -5,7 +5,7 @@ export const LANDLORD_SIDEBAR_ITEMS: ISidebarItem[] = [
   {
     id: "create_property_landlord",
     label: "Create Property",
-    href: "/landlord_dashboard",
+    href: "/create_property_landlord",
     icon: Building, // ✅ group of people
   },
 

@@ -10,7 +10,6 @@ import {updatePropertyAction} from "../../_actions/updatePropertyAction";
 import {
   PropertyLocationEnum,
   PropertyAmenityEnum,
-  RentStatusEnum,
   PropertyAmenity,
   PropertyCategory,
 } from "@/lib/types";
@@ -30,7 +29,7 @@ export function UpdatePropertyForm({ property }: UpdatePropertyFormProps) {
   // Extract valid lists from your global Zod Enum descriptors definition layers
   const locations = Object.keys(PropertyLocationEnum.enum);
   const amenitiesList = Object.keys(PropertyAmenityEnum.enum);
-  const statuses = Object.keys(RentStatusEnum.enum);
+  // const statuses = Object.keys(RentStatusEnum.enum);
 
   const {
     register,
@@ -46,7 +45,6 @@ export function UpdatePropertyForm({ property }: UpdatePropertyFormProps) {
       location: property.location,
       areaInSqFt: property.areaInSqFt,
       amenities: property.amenities,
-      rentStatus: property.rentStatus,
     },
   });
 
@@ -144,23 +142,6 @@ export function UpdatePropertyForm({ property }: UpdatePropertyFormProps) {
             {locations.map((loc) => (
               <option key={loc} value={loc}>
                 {loc}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        {/* Selection Drop: Rental Availability Status */}
-        <div className="space-y-1.5">
-          <label className="text-xs font-bold uppercase tracking-wider text-black">
-            Availability Matrices
-          </label>
-          <select
-            className="w-full h-9 rounded-md border border-neutral-200 bg-white px-3 py-1 text-sm shadow-sm focus:outline-none focus:ring-1 focus:ring-green-600"
-            {...register("rentStatus", { required: true })}
-          >
-            {statuses.map((stat) => (
-              <option key={stat} value={stat}>
-                {stat}
               </option>
             ))}
           </select>

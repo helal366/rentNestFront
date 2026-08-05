@@ -38,11 +38,21 @@ export async function fetchLandlordPropertyById(id: string) {
       headers: { Cookie: `accessToken=${accessToken}` },
       cache: "no-store",
     });
-    if (!res.ok) return null;
+    if (!res.ok) {
+      return {
+        success: false,
+        statusCode: 400,
+        message: "Fetch failed.",
+      };
+    };
     return await res.json();
   } catch (error) {
     console.error("Error fetching landlord property details:", error);
-    return null;
+    return {
+      success: false,
+      statusCode: 500,
+      message: "Internal server error fetching failed.",
+    };;
   }
 }
 
@@ -52,18 +62,29 @@ export async function deletePropertyAction(id: string) {
   const accessToken = cookieStore.get("accessToken")?.value;
 
   if (!accessToken)
-    return { success: false, message: "Authentication required." };
+    return { success: false, statusCode: 400, message: "Authentication required." };
 
   try {
     // Awaiting your specific backend DELETE endpoint later
-    // const res = await fetch(`${BASE_URL}/api/properties/${id}`, { method: "DELETE", ... })
-
+    const res = await fetch(`${BASE_URL}/api/landlord/properties/${id}`, {
+      method: "DELETE",
+      headers: { Cookie: `accessToken=${accessToken}` },
+      cache: "no-store",
+    });
+    if (!res.ok) {
+      return {
+        success: false,
+        statusCode: 400,
+        message: "Fetch failed.",
+      };
+    }
     revalidatePath("/my_properties_landlord");
     return {
       success: true,
+      statusCode: 200,
       message: "Property removed from database list cleanly.",
     };
-  } catch (error) {
+  } catch{
     return {
       success: false,
       message: "Failed to execute database deletion matrix.",
