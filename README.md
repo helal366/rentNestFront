@@ -112,7 +112,19 @@ rmdir /s /q .next
 pnpm dev
 ```
 
-
+[1. Browser UI Input]  --> User types text "1200" (Read as string)
+        │
+[2. React Hook Form]  --> { valueAsNumber: true } instantly converts string "1200" to number 1200
+        │
+[3. Shared Zod Filter] --> resolver: zodResolver() runs on frontend. Checks if 1200 is positive. Passes.
+        │
+[4. Next.js Server]    --> updatePropertyAction(id, payload) hits the network pipeline
+        │
+[5. Express API Route] --> Express receives payload. JSON parser reads areaInSqFt as numeric 1200
+        │
+[6. Backend Middleware]--> validateRentalRequest runs. Schema parses data. Blocks malicious string injection.
+        │
+[7. Prisma & Database] --> updatePropertyServices runs. Exerts update query. Number committed securely.
 
 
 * When you write: feat: add role-based dashboard layout, you are telling your team:"I have added a brand new piece of functionality to the app (the dashboard layout)." 

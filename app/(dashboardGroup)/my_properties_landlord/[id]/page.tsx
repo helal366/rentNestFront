@@ -61,13 +61,13 @@ export default async function LandlordPropertyDetailsPage({
           <Card className="bg-olive-200 border border-olive-300 shadow-none">
             <CardHeader>
               <CardTitle className="text-base font-extrabold text-black">
-                Property Blueprint Variables
+                Property Informations
               </CardTitle>
             </CardHeader>
             <CardContent className="grid grid-cols-2 gap-4 text-xs font-bold text-neutral-800">
               <div>
                 <p className="text-neutral-500 font-semibold mb-0.5">
-                  Location zone coordinate
+                  Location 
                 </p>
                 <p className="text-black text-sm font-black flex items-center gap-1">
                   <MapPin className="h-3.5 w-3.5 text-green-600" />{" "}
@@ -76,7 +76,7 @@ export default async function LandlordPropertyDetailsPage({
               </div>
               <div>
                 <p className="text-neutral-500 font-semibold mb-0.5">
-                  Dimensional footprint size
+                  Area
                 </p>
                 <p className="text-black text-sm font-black flex items-center gap-1">
                   <Maximize className="h-3.5 w-3.5 text-green-600" />{" "}
@@ -90,7 +90,7 @@ export default async function LandlordPropertyDetailsPage({
           <Card className="bg-olive-200 border border-olive-300 shadow-none">
             <CardHeader>
               <CardTitle className="text-base font-extrabold text-black">
-                Declared Amenities
+                Amenities
               </CardTitle>
             </CardHeader>
             <CardContent>

@@ -19,7 +19,7 @@ export function PropertyManagementWidget({
 
   const handleUpdateNavigation = () => {
     // Navigates to your upcoming editing form route
-    router.push(`/my_properties_landlord/${propertyId}/edit`);
+    router.push(`/my_properties_landlord/${propertyId}/update`);
   };
 
   const handleDelete = () => {
