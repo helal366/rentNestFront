@@ -4,11 +4,51 @@ import { TableRow, TableCell } from "@/components/ui/table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { UserData } from "../../_types/users_types";
 import { UserPropertyCard, UserReviewCard } from "./UserCard";
+import { Button } from "@/components/ui/button";
+import { useTransition } from "react";
+import { toast } from "sonner";
+import { toggleUserStatusAction } from "../../_actions/toggleUserStatusAction";
+import { IUserStatusData, IUserStatusResponse } from "@/lib/types";
+import { useRouter } from "next/navigation";
 
 export function UserExpandedTabs({ user }: { user: UserData }) {
+  const router = useRouter()
+  const [isPending, startTransition] = useTransition();
+  const handleToggleStatus = () => {
+    startTransition(async () => {
+      try {
+        const result: IUserStatusResponse = await toggleUserStatusAction(
+          user.id,
+          user.userStatus,
+        );
+        const updatedUser = result.data as IUserStatusData;
+        // console.log("Toggling status for:", user.id);
+        router.refresh()
+        toast.success(
+          updatedUser.userStatus === "BANNED"
+            ? "User unbanned successfully"
+            : "User banned successfully",
+        );
+      } catch {
+        toast.error("Failed to update user status");
+      }
+    });
+  };
+  const isBanned = user.userStatus === "BANNED";
   return (
     <TableRow className="bg-muted/20 hover:bg-muted/20">
       <TableCell colSpan={5} className="p-6">
+        <div className="flex justify-end">
+          <Button
+            className="cursor-pointer"
+            variant={isBanned ? "default" : "destructive"}
+            size="sm"
+            disabled={isPending}
+            onClick={handleToggleStatus}
+          >
+            {isPending ? "Processing..." : isBanned ? "CLICK TO UNBAN USER" : "CLICK TO BAN USER"}
+          </Button>
+        </div>
         <Tabs defaultValue="overview" className="w-full">
           <TabsList className="grid w-full max-w-100 grid-cols-2">
             <TabsTrigger value="overview">

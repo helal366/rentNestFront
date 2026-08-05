@@ -110,4 +110,17 @@ export type ISidebarItem = {
     icon: ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>
 }
 
-
+export interface IUserStatusData {
+  id: string,
+  name: string,
+  email: string,
+  role: Role,
+  userStatus: UserStatus
+}
+export interface IUserStatusResponse {
+  success: boolean;
+  statusCode: number;
+  message: string;
+  data?: IUserStatusData;
+  errors?: string[];
+}

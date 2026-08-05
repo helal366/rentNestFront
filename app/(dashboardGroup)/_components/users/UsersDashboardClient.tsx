@@ -14,7 +14,7 @@ interface UsersDashboardClientProps {
 }
 
 export default function UsersDashboardClient({ initialUsers, initialTotal }: UsersDashboardClientProps) {
-  const [users] = useState<UserData[]>(initialUsers);
+  const users = initialUsers;
   const [expandedUser, setExpandedUser] = useState<string | null>(null);
 
   return (

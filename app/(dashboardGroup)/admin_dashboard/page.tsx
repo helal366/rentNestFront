@@ -60,11 +60,11 @@ const AdminDashboard = async () => {
       </div>
 
       {/* System Stats */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mt-8">
+      {/* <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mt-8">
         <div className="border rounded-xl p-4 bg-background">
           <p className="text-sm text-muted-foreground">Total Users</p>
           <p className="text-xl font-bold">
-            {/* replace with real API later */}
+
             --
           </p>
         </div>
@@ -83,35 +83,9 @@ const AdminDashboard = async () => {
           <p className="text-sm text-muted-foreground">Active Listings</p>
           <p className="text-xl font-bold">--</p>
         </div>
-      </div>
+      </div> */}
 
-      {/* Quick Actions */}
-      <div className="mt-10">
-        <h2 className="text-lg font-semibold mb-4">Quick Actions</h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-          <div className="border rounded-xl p-4 hover:bg-muted transition cursor-pointer">
-            <p className="font-medium">Manage Users</p>
-            <p className="text-sm text-muted-foreground">
-              View, ban or update users
-            </p>
-          </div>
-
-          <div className="border rounded-xl p-4 hover:bg-muted transition cursor-pointer">
-            <p className="font-medium">Manage Properties</p>
-            <p className="text-sm text-muted-foreground">
-              Approve or remove listings
-            </p>
-          </div>
-
-          <div className="border rounded-xl p-4 hover:bg-muted transition cursor-pointer">
-            <p className="font-medium">View Reports</p>
-            <p className="text-sm text-muted-foreground">
-              Monitor system activity
-            </p>
-          </div>
-        </div>
-      </div>
     </div>
   );
 };
