@@ -30,7 +30,7 @@ function ConfirmationContent() {
   const amount = searchParams.get("amount");
   const method = searchParams.get("method") || "SSLCOMMERZ";
   const date = searchParams.get("date");
-
+  
   // 1. SUCCESS STATE
   if (status === "success") {
     return (
@@ -86,18 +86,21 @@ function ConfirmationContent() {
           </div>
         </CardContent>
 
-        {/* <CardFooter className="flex flex-col gap-2">
-          <Button className="w-full" onClick={() => router.push("/payments")}>
-            View Payment History
-          </Button>
-          <Button
-            variant="outline"
-            className="w-full"
-            onClick={() => router.push("/tenant_dashboard")}
-          >
-            Go to Dashboard
-          </Button>
-        </CardFooter> */}
+        <CardFooter className="flex flex-col gap-2">
+        <Button
+          className="w-full bg-green-600 hover:bg-green-800 text-white cursor-pointer"
+          onClick={() => router.push("/")}
+        >
+          Go Home
+        </Button>
+        <Button
+          className="w-full bg-green-600 hover:bg-green-800 text-white cursor-pointer"
+          onClick={() => router.push("/tenant_dashboard")}
+        >
+          Go to Dashboard
+        </Button>
+          
+        </CardFooter>
       </Card>
     );
   }

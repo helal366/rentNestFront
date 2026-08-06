@@ -40,6 +40,18 @@ export interface RentalRequestAllItem {
   landlord: LandlordSummaryAll;
 }
 
+export interface GroupedPropertySection {
+  property: PropertySummaryAll;
+  landlord: LandlordSummaryAll;
+  requests: Array<{
+    id: string;
+    tenantId: string;
+    requestStatus: string;
+    isPaid: boolean;
+    createdAt: string;
+  }>;
+}
+
 // --- Types for Single Rental Request (findUniqueOrThrow) ---
 export interface CategorySummarySingle {
   name: string;

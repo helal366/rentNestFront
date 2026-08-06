@@ -13,8 +13,10 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { useRouter } from "next/navigation";
 
 export default function CreatePropertyForm() {
+  const router=useRouter()
   const [isPending, startTransition] = useTransition();
   const [status, setStatus] = useState<{
     type: "success" | "error";
@@ -64,6 +66,7 @@ export default function CreatePropertyForm() {
             "An unexpected error occurred.",
         });
       }
+      router.push("/my_properties_landlord");
     });
   };
 

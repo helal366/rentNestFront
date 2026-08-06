@@ -45,7 +45,7 @@ export default async function MyPropertiesLandlordPage() {
           className="bg-green-600 hover:bg-green-700 text-white font-bold cursor-pointer"
         >
           <Link
-            href="/my_properties_landlord/create"
+            href="/create_property_landlord"
             className="flex items-center gap-1.5"
           >
             <PlusCircle className="h-4 w-4" /> Add New Nest

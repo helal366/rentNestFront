@@ -5,7 +5,7 @@ export const TENANT_SIDEBAR_ITEMS: ISidebarItem[] = [
   {
     id:"create_rental_request_tenant",
     label: "Create Rental Request",
-    href: "/landlord_dashboard",
+    href: "/create_rental_tenant",
     icon: Building, // ✅ group of people
   },
   {

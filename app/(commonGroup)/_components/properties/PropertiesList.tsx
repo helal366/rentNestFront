@@ -113,7 +113,7 @@ const PropertiesList = async ({
 
                 <Button
                   asChild
-                  className="w-full font-bold text-white bg-gray-900 hover:bg-gray-800 cursor-pointer"
+                  className="w-full font-bold text-white bg-green-600 hover:bg-green-800 cursor-pointer"
                 >
                   <Link href={`/properties/${property.id}`}>Details</Link>
                 </Button>
