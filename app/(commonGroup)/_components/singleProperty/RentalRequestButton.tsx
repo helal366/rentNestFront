@@ -14,6 +14,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { useTopLoader } from "nextjs-toploader";
 
 interface RentalRequestButtonProps {
   landlordId: string;
@@ -32,6 +33,7 @@ export function RentalRequestButton({
   isAvailable,
   hasAlreadySubmitted,
 }: RentalRequestButtonProps) {
+  const loader = useTopLoader()
   const [isPending, setIsPending] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -58,21 +60,24 @@ export function RentalRequestButton({
   // Backend Action Execution logic
   const handleRentalRequest = async () => {
     setIsOpen(false); // Cleanly dismiss the centered window immediately
-
+    loader.start()
     try {
       setIsPending(true);
       const response = await createRentalRequestAction(propertyId, landlordId);
 
       if (response.success) {
+        loader.done();
         toast.success("Success", {
           description: response.message,
         });
       } else {
+        loader.done();
         toast.error("Submission Failed", {
           description: response.message,
         });
       }
     } catch {
+      loader.done();
       toast.error("Network Error", {
         description:
           "An unexpected connection failure occurred. Please try again.",

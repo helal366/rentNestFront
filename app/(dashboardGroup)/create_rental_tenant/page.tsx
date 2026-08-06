@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 
 export default function CreateRentalRequestPage() {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-br from-white via-olive-200 to-olive-300 px-4 text-black">
+    <div className="flex min-h-screen flex-col items-center justify-center bg-linear-to-br from-white via-olive-200 to-olive-300 px-4 text-black">
       <main className="w-full max-w-xl rounded-2xl bg-white p-8 shadow-xl border border-olive-200 text-center">
         {/* Info Icon Placeholder */}
         <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-green-700 text-white text-2xl font-bold">

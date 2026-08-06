@@ -2,6 +2,7 @@ import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Mail, Phone, MapPin, Clock } from "lucide-react";
 import { ContactForm } from "../_components/contact/ContactForm";
+import { Footer } from "../_components/footer/Footer";
 
 export const metadata = {
   title: "Contact Us | RentNest",
@@ -11,6 +12,7 @@ export const metadata = {
 
 export default function ContactPage() {
   return (
+    <>
     <main className="min-h-screen bg-white text-black py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto space-y-12">
         {/* Header Section */}
@@ -130,5 +132,7 @@ export default function ContactPage() {
         </div>
       </div>
     </main>
+    <Footer/>
+    </>
   );
 }

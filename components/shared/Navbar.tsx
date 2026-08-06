@@ -16,9 +16,22 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { useTopLoader } from "nextjs-toploader";
 
 export default function Navbar({ user }: { user: UserResponse | null }) {
+  const loader = useTopLoader()
   const userMenuItems= getUserMenuItems(user);
+
+   const handleLogoutAction = async () => {
+    loader.start(); // Fire progress bar animation instantly upon dropdown action execution
+    try {
+      await logout();
+      loader.done();
+    } catch (error) {
+      console.error("Logout runtime exception:", error);
+      loader.done(); // Stop loader if a network error blocks the backend action redirect
+    }
+  };
 
   return (
     <nav className="w-full border-b bg-olive-100 sticky top-0 z-50">
@@ -66,7 +79,7 @@ export default function Navbar({ user }: { user: UserResponse | null }) {
                     return (
                       <DropdownMenuItem
                         key={item.label}
-                        onClick={() => logout()}
+                        onClick={handleLogoutAction}
                         className="text-destructive focus:text-destructive focus:bg-destructive/10 cursor-pointer"
                       >
                         <Icon className="mr-2 h-4 w-4" />

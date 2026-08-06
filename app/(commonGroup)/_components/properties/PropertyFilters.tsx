@@ -22,12 +22,15 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useTopLoader } from "nextjs-toploader";
 
 export default function PropertyFilters({
   searchParams,
 }: {
   searchParams: ValidatedPropertySearchParams;
 }) {
+
+  const loader = useTopLoader();
   const [selectedAmenities, setSelectedAmenities] = useState<PropertyAmenity[]>(
     searchParams.amenities ?? [],
   );
@@ -45,11 +48,21 @@ export default function PropertyFilters({
       checked ? [...prev, amenity] : prev.filter((a) => a !== amenity),
     );
   };
+  const onFormAction = (formData: FormData) => {
+    loader.start(); // Fire animation bar instantly when submission starts
+
+    startTransition(async () => {
+      try {
+        await handleFilterSubmit(formData);
+      } catch (error) {
+        console.error("Filtering failure caught:", error);
+      } finally {
+        loader.done(); // Stop progress bar instantly once the transition completes
+      }
+    });
+  };
   return (
-    <form
-      action={(formData) => startTransition(() => handleFilterSubmit(formData))}
-      className="space-y-6 text-sm"
-    >
+    <form action={onFormAction} className="space-y-6 text-sm">
       {/* Shadcn Location Select Menu */}
       <div className="space-y-2">
         <Label htmlFor="location" className="font-bold text-gray-700">
@@ -175,6 +188,7 @@ export default function PropertyFilters({
           type="button"
           variant="outline"
           onClick={() => {
+            loader.start();
             setMinPriceState("");
             router.replace("/properties");
           }}

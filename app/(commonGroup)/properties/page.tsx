@@ -64,7 +64,7 @@ export default async function PropertiesPage({
 }: PropertiesSearchProps) {
   const rawParams: PropertySearchParams = await searchParams;
   const parsedResult = frontendPropertySearchSchema.safeParse(rawParams);
-  console.log({ parsedResult });
+  // console.log({ parsedResult });
   if (!parsedResult.success) {
     const formattedError = z.treeifyError(parsedResult.error);
     console.dir(formattedError, { depth: null });
