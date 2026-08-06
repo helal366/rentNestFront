@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/card";
 import { RentalRequestAllItem } from "../_types/rental_landlord_tenant_types";
 export const dynamic = "force-dynamic";
+
 export default async function PayRentals() {
   let requests = [] as RentalRequestAllItem[];
   let user: UserResponse;
