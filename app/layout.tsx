@@ -3,6 +3,7 @@ import { Hind_Siliguri, Roboto } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import NextTopLoader from "nextjs-toploader";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -29,11 +30,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="bn" className={`${roboto.variable} ${banglaFont.variable}`}>
-      <body className="min-h-full flex flex-col bg-olive-300" suppressHydrationWarning>
-        <TooltipProvider>
-         {children}
-        </TooltipProvider>
-         <Toaster richColors closeButton />
+      <body
+        className="min-h-full flex flex-col bg-olive-300"
+        suppressHydrationWarning
+      >
+        <NextTopLoader color="#2563eb" showSpinner={false} />
+        <TooltipProvider>{children}</TooltipProvider>
+        <Toaster richColors closeButton />
       </body>
     </html>
   );
