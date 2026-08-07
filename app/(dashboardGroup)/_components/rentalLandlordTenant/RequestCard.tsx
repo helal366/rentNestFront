@@ -88,7 +88,7 @@ export function RequestCard({ req, userRole }: RequestCardProps) {
           {userRole === "LANDLORD" && req.requestStatus === "PENDING" && (
             <Button
               asChild
-              className="w-full bg-olive-200 text-black hover:bg-olive-300"
+              className="w-full bg-green-700 text-white hover:bg-green-800"
               size="sm"
             >
               <Link href={`/rental_landlord_tenant/${req.id}`}>

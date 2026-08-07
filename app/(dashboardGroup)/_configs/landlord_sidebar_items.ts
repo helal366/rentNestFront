@@ -1,5 +1,5 @@
 import { ISidebarItem } from "@/lib/types";
-import { Building, ClipboardList, CreditCard, Tags } from "lucide-react";
+import { Building, ClipboardList, CreditCard, Star, Tags } from "lucide-react";
 
 export const LANDLORD_SIDEBAR_ITEMS: ISidebarItem[] = [
   {
@@ -32,5 +32,11 @@ export const LANDLORD_SIDEBAR_ITEMS: ISidebarItem[] = [
     label: "Payment History",
     href: "/payments",
     icon: CreditCard, // ✅ money/payments
+  },
+  {
+    id: "reviews_landlord",
+    label: "Reviews",
+    href: "/reviews",
+    icon: Star, // ✅ reviews
   },
 ];

@@ -501,3 +501,60 @@ This document maps the frontend components to their respective backend API endpo
   * **Success:** Shows an animated confirmation state, breaks down specific transaction fields, and offers options to view payment history or return home.
   * **Cancelled:** Displays an amber warning indicating the window was manually closed, confirming no funds were deducted, and adds a retry payment shortcut.
   * **Failed:** Renders a red error alert mapping failure conditions (insufficient funds, invalid verification) and guides the user to retry with another card.
+
+
+# Leave Review Feature
+## 🧾 Leave Review Page
+### LeaveReviewPage (app/(dashboardGroup)/leave_review/page.tsx)
+#### 🔗 Backend Endpoints
+```
+GET ${process.env.BACKEND_VERCEL_URL}/api/rentals/:id
+POST ${process.env.BACKEND_VERCEL_URL}/api/reviews
+```
+#### 📖 Description
+Allows authenticated TENANT users to submit a review for a property
+This page is accessed after successful payment
+Receives:
+rentalId from query params
+#### 🔄 Data Fetching Flow
+- Uses server action: getRentalById(rentalId)
+- Sends request with cookies (accessToken)
+- Fetches rental request details
+* Extracts:
+- const propertyId =
+  rentalRequest.rentalRequestProperty.id;
+#### 📝 Review Submission Flow
+Uses server action: createReview(payload)
+📦 Payload Structure:
+```
+{
+  propertyId: string;
+  rating: number;   // 1 - 5
+  content: string;
+}
+```
+- Sends authenticated request using cookies
+- 🎨 UI Features
+- ⭐ Interactive Star Rating System
+#### Click on a star → sets rating
+* Example:
+- Click 5th star → rating = 5
+- Click 3rd star → rating = 3
+Selected stars change color (green-700)
+#### 📝 Review Input
+Textarea for writing remarks (content)
+
+#### 🔁 Full Flow Overview
+Payment Success
+   ↓
+Redirect with rentalId
+   ↓
+Leave Review Page
+   ↓
+GET /api/rentals/:id
+   ↓
+Extract propertyId
+   ↓
+POST /api/reviews
+   ↓
+Toast + Redirect (/reviews)

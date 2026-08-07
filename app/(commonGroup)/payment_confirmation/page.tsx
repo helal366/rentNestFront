@@ -29,6 +29,8 @@ function ConfirmationContent() {
   const tranId = searchParams.get("tranId");
   const amount = searchParams.get("amount");
   const method = searchParams.get("method") || "SSLCOMMERZ";
+  const rentalId = searchParams.get("rentalId");
+  const paymentId = searchParams.get("paymentId");
   const date = searchParams.get("date");
   
   // 1. SUCCESS STATE
@@ -57,6 +59,25 @@ function ConfirmationContent() {
                 {tranId}
               </span>
             </div>
+
+            <div className="flex justify-between items-center border-b pb-2">
+              <span className="text-gray-500 flex items-center gap-2">
+                <Hash className="h-4 w-4" /> Payment ID
+              </span>
+              <span className="font-mono font-bold text-gray-800">
+                {paymentId ? paymentId : "No payment id found"}
+              </span>
+            </div>
+
+            <div className="flex justify-between items-center border-b pb-2">
+              <span className="text-gray-500 flex items-center gap-2">
+                <Hash className="h-4 w-4" /> Rental Request ID
+              </span>
+              <span className="font-mono font-bold text-gray-800">
+                {rentalId ? rentalId : "No rental request id found"}
+              </span>
+            </div>
+
             <div className="flex justify-between items-center border-b pb-2">
               <span className="text-gray-500 flex items-center gap-2">
                 <DollarSign className="h-4 w-4" /> Amount Paid
@@ -65,6 +86,7 @@ function ConfirmationContent() {
                 {amount ? `${amount} BDT` : "6000 BDT"}
               </span>
             </div>
+
             <div className="flex justify-between items-center border-b pb-2">
               <span className="text-gray-500 flex items-center gap-2">
                 <CreditCard className="h-4 w-4" /> Payment Method
@@ -87,19 +109,23 @@ function ConfirmationContent() {
         </CardContent>
 
         <CardFooter className="flex flex-col gap-2">
-        <Button
-          className="w-full bg-green-600 hover:bg-green-800 text-white cursor-pointer"
-          onClick={() => router.push("/")}
-        >
-          Go Home
-        </Button>
-        <Button
-          className="w-full bg-green-600 hover:bg-green-800 text-white cursor-pointer"
-          onClick={() => router.push("/tenant_dashboard")}
-        >
-          Go to Dashboard
-        </Button>
-          
+          <Button
+            disabled={!paymentId || !rentalId}
+            onClick={() => {
+              if (!paymentId || !rentalId) return;
+              router.push(
+                `/leave_review?paymentId=${paymentId}&rentalId=${rentalId}`,
+              );
+            }}
+          >
+            Leave A Review
+          </Button>
+          <Button
+            className="w-full bg-green-600 hover:bg-green-800 text-white cursor-pointer"
+            onClick={() => router.push("/tenant_dashboard")}
+          >
+            Go to Dashboard
+          </Button>
         </CardFooter>
       </Card>
     );

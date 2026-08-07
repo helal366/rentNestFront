@@ -1,15 +1,15 @@
 import { ISidebarItem } from "@/lib/types";
-import { Building, ClipboardList, CreditCard, HandCoins, Tags } from "lucide-react";
+import { Building, ClipboardList, CreditCard, HandCoins, Star, Tags } from "lucide-react";
 
 export const TENANT_SIDEBAR_ITEMS: ISidebarItem[] = [
   {
-    id:"create_rental_request_tenant",
+    id: "create_rental_request_tenant",
     label: "Create Rental Request",
     href: "/create_rental_tenant",
     icon: Building, // ✅ group of people
   },
   {
-    id:"all_rental_requests_tenant",
+    id: "all_rental_requests_tenant",
     label: "Rental Requests",
     href: "/rental_landlord_tenant",
     icon: ClipboardList, // ✅ list / requests
@@ -27,9 +27,15 @@ export const TENANT_SIDEBAR_ITEMS: ISidebarItem[] = [
     icon: CreditCard, // ✅ money/payments
   },
   {
-    id:"pay_now_tenant",
+    id: "pay_now_tenant",
     label: "Pay Now",
     href: "/pay_rentals",
     icon: HandCoins, // ✅ money/payments
+  },
+  {
+    id: "my_reviews_tenant",
+    label: "My Reviews",
+    href: "/reviews",
+    icon: Star, // ✅ reviews
   },
 ];
