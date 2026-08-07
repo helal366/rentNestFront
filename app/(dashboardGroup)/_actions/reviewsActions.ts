@@ -1,11 +1,11 @@
 "use server";
 
 import { cookies } from "next/headers";
-import { IGetReviewsResponse, } from "../_types/reviews_types";
+import { IGetAllReviewsResponse, } from "../_types/reviews_types";
 
 const BASE_URL = process.env.BACKEND_VERCEL_URL?.replace(/\/$/, "");
 
-export const getAllReviews = async (): Promise<IGetReviewsResponse> => {
+export const getAllReviews = async (): Promise<IGetAllReviewsResponse> => {
   const cookieStore = await cookies();
   const accessToken = cookieStore.get("accessToken")?.value;
 

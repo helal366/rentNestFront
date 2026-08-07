@@ -2,6 +2,7 @@ import { LucideProps } from "lucide-react";
 import { ForwardRefExoticComponent, RefAttributes } from "react";
 import { z } from "zod";
 
+export const PaymentStatusEnum = z.enum(["PENDING", "COMPLETED", "FAILED"])
 export const RoleEnum = z.enum(["ADMIN", "TENANT", "LANDLORD"]);
 export const RentRequestStatusEnum = z.enum([
   "PENDING",
@@ -35,6 +36,7 @@ export const PropertyCategoryEnum = z.enum([
   "HOUSE",
 ]);
 
+export type PaymentStatus = z.infer<typeof PaymentStatusEnum>;
 export type Role = z.infer<typeof RoleEnum>;
 export type PropertyLocation = z.infer<typeof PropertyLocationEnum>;
 export type RentStatus = z.infer<typeof RentStatusEnum>;

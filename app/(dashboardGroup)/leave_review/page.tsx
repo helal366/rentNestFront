@@ -33,9 +33,7 @@ export default function LeaveReviewPage() {
         }
         const pid = res.data.rentalRequest.rentalRequestProperty.id;
         setPropertyId(pid);
-        setTimeout(() => {
-          router.push("/reviews");
-        }, 800);
+        
       } else {
         toast.error("Failed to load rental info");
       }
@@ -75,6 +73,9 @@ export default function LeaveReviewPage() {
       toast.success("Review submitted successfully 🎉");
       setRating(0);
       setContent("");
+      setTimeout(() => {
+        router.push("/reviews");
+      }, 800);
     } else {
       toast.error(res.message || "Failed to submit review");
     }
@@ -84,7 +85,7 @@ export default function LeaveReviewPage() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#f8faf5] px-4">
       <div className="w-full max-w-xl bg-white p-6 rounded-2xl shadow-md border border-[#e6eddc]">
-        <h1 className="text-2xl font-bold text-black mb-4">Leave a Review</h1>
+        <h1 className="text-2xl font-bold text-black mb-4">Leave A Review</h1>
 
         {/* ⭐ Star Rating */}
         <div className="flex gap-2 mb-4">

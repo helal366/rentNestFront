@@ -1,5 +1,5 @@
 import { ISidebarItem } from "@/lib/types";
-import { Building, ClipboardList, CreditCard, HandCoins, Star, Tags } from "lucide-react";
+import { Building, ClipboardList, CreditCard, HandCoins, MessageSquarePlus, Star, Tags } from "lucide-react";
 
 export const TENANT_SIDEBAR_ITEMS: ISidebarItem[] = [
   {
@@ -31,6 +31,12 @@ export const TENANT_SIDEBAR_ITEMS: ISidebarItem[] = [
     label: "Pay Now",
     href: "/pay_rentals",
     icon: HandCoins, // ✅ money/payments
+  },
+  {
+    id: "create_reviews_tenant",
+    label: "Create Reviews",
+    href: "/create_review_tenant",
+    icon: MessageSquarePlus, // ✅ reviews
   },
   {
     id: "my_reviews_tenant",
